@@ -13,7 +13,7 @@ Starting with qgis2web map (./composers-birth-death/index.html), see if this sat
 Depending on the outcome:
 
 1. Create map document using Leaflet JS/CSS, using a CARTO basemap ([https://github.com/CartoDB/basemap-styles](https://github.com/CartoDB/basemap-styles)). Alternatively Stamen Designs or other OpenStreetMap-based basemap that allows use without API.
-2. Use existing GeoJSON data in `./composers-birth-death/data` to create new layer groups for each composer. Each layer group will include a styled birth and death markers, and a line connecting them.
+2. Use existing GeoJSON data in `./composers-birth-death/data` to create new layer groups for each composer. Each layer group will include a styled birth and death markers, and a line connecting them. Will be stored in the `composers` directory.
 3. Test and implement Leaflet layer controls ([https://leafletjs.com/examples/layers-control/](https://leafletjs.com/examples/layers-control/)). These should:
 
 - display all composers on map load
