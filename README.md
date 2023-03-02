@@ -1,4 +1,4 @@
-# Polyrythm Maps
+# Polyrhythm Maps
 
 This repository is a workspace for collaborating on building three maps related to ------.
 
