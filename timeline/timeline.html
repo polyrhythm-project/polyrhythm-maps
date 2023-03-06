@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Leaflet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Source for your Leaflet JavaScript and CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+  </head>
+
+  <body>
+    <!-- Map's HTML container -->
+    <div id="map" style="height: 100%"></div>
+
+    <script>
+      // Initializes map; sets the initial view location and zoom level
+      var map = L.map("map").setView([42, -35], 2);
+
+      //Loads the tile layer; can be changed to layer and style of your choice
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/{style}/{z}/{x}/{y}" +
+          (L.Browser.retina ? "@2x.png" : ".png"),
+        {
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          subdomains: "abcd",
+          maxZoom: 20,
+          minZoom: 0,
+          style: "light_all",
+        }
+      ).addTo(map);
+    </script>
+  </body>
+</html>
