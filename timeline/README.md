@@ -27,3 +27,65 @@ The timeline feature allowed users to "play" the map to show locations highlight
 - [https://www.youtube.com/watch?v=XvKu6_b6aRM](https://www.youtube.com/watch?v=XvKu6_b6aRM) - Learn Leaflet with Mapster - Animation
 - [https://leafletjs.com/reference.html#geojson-filter](https://leafletjs.com/reference.html#geojson-filter) - Built-in GeoJSON filtering option
 - [https://www.youtube.com/watch?v=x4MGSkw6QnM](https://www.youtube.com/watch?v=x4MGSkw6QnM) - Learn Leaflet with Mapster - Filters (dropdowns)
+
+
+## Solutions Documentation 
+
+- Making a boilerplate basemap powered by leaflet and Stamen 
+    
+### Implementing Leaflet time slider plugin - Method 1
+
+See [timeline-1.html](./timeline-1.html) for map with timeline slider built referencing code and documentation from [http://dwilhelm89.github.io/LeafletSlider/](http://dwilhelm89.github.io/LeafletSlider/)
+
+1. Convert csv data to geoJSON - drag into https://geojson.io/ to visualize and "Save" in geoJSON format 
+2. Add data.geojson to appropriate repo folder. Then wrap the data as a variable (simply add `var =` before the data on the first line) and save the file to javascript format. It should now appear as `data.js`
+3. In the body of your html document and within the `<script>` element, your add data.js to the map as a variable called `testlayer`
+
+```js
+var testlayer = L.geoJson(data).addTo(map);
+```
+    
+To direct your html document to the dataset, also include the following in the <head> element
+
+`<script src="./data.js" charset="utf-8"></script>`
+
+4. Create and save a new .js file with the contents of [SliderControl.js](https://github.com/dwilhelm89/LeafletSlider/blob/master/SliderControl.js)
+
+To direct your html document to the SliderControl, also include the following in the <head> element
+`<script src="./SliderControl.js"></script>`
+
+5. Download [jquery](https://jqueryui.com/download/). Keep all boxes checked as is and scroll all the way to the bottom. Keep the Base theme. No need to set a CSS scope. Extract the contents of the downloaded zip file and add to the appropriate repo folder. 
+
+6. To direct your html document to the necessary jquery CSS and Javascript files, add the following to the bottom of the <head> element. `src=` sets the filepath. The links begin with ./ to indicate the files are stored locally within the same directory the map html document. 
+
+```html
+
+    <link rel="stylesheet" type="text/css" href="./jquery-ui-1.13.2/jquery-ui.css"/>
+        
+    <script src="./jquery-ui-1.13.2/external/jquery/jquery.js"></script>
+    <script src="./jquery-ui-1.13.2/jquery-ui.min.js"></script>
+```
+
+7. The rest of the steps involve adding to the `<script>` element within the body of the html document. Beneath the testlayer variable created to render the data points, copy and paste the contents of `SliderControl.js` This is a sizable chunk of code so you can collapse it once added.  
+
+8. Create a variable for the SliderControl
+```js
+var sliderControl = L.control.sliderControl({
+        position: "topright",
+        layer: testlayer,
+        range: true
+      });
+```
+
+9. Add the control to the map
+```js
+map.addControl(sliderControl);
+```
+10. Initialize the control
+```js
+    sliderControl.startSlider();
+```
+11. Set the dataset property which represents the timestamp of interest. Here it is set to "premiere_data"
+```js
+$('#slider-timestamp').html(options.markers[ui.value].feature.properties.premiere_date.substr(0, 19));
+```
