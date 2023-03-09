@@ -31,7 +31,7 @@ The timeline feature allowed users to "play" the map to show locations highlight
 
 ## Solutions Documentation 
 
-- Making a boilerplate basemap powered by leaflet and Stamen 
+- [timeline-boilerplate.html](./timeline-boilerplate.html) provides a basemap for modifying according to the workflows below. 
     
 ### Implementing Leaflet time slider plugin - Method 1
 
@@ -88,4 +88,33 @@ map.addControl(sliderControl);
 11. Set the dataset property which represents the timestamp of interest. Here it is set to "premiere_data"
 ```js
 $('#slider-timestamp').html(options.markers[ui.value].feature.properties.premiere_date.substr(0, 19));
+```
+
+#### Adding metadata popups to map composed w/ Method 1 
+To create elementary popups that retrieve a single attribute property for each point on click, replace the initial line of code which sets a variable and adds the data layer as a map object with the following.
+
+```js
+var testlayer = L.geoJSON(data, {
+        onEachFeature: function (feature, layer) {
+          if (
+            feature.properties &&
+            feature.properties.work_title &&
+            feature.properties.premiere_date 
+            //to retrieve additional properties  
+            // add another '&&' on the last line
+            // followed by feature.properties.PROPERTY 
+          ) {
+            layer.bindPopup(
+              "<h4>Premiere Date:" +
+                feature.properties.premiere_date +
+                "</h4><p>Work: " +
+                feature.properties.work_title +
+                "</p>"
+                //for additional properties to be 
+                //displayed in the popup, continue building
+                //the expression here
+            );
+          }
+        },
+      }).addTo(map);
 ```
