@@ -1,6 +1,20 @@
 # Premieres Map
 
-This map is meant to show the locations of where certain works first premiered. The original interactive map included features that were displayed as a heat map at certain levels. When zoomed in, a user could click on a work and get metadata elements.
+This map is meant to show the locations of where certain works first premiered. The original interactive map included features that were displayed as a heat map at certain levels. When zoomed in, a user could click on a work and get metadata elements. All metadata is availble on FDS_Metadata_1900DS_ArcGIS_18May2019_master (https://docs.google.com/spreadsheets/d/17rjKQ3lXJHEHAcDfOXTDNX5a0A_jVqwokcaqhd3Ddng/edit?usp=sharing)
+
+Metadata points for this map include:
+- Composer Name
+- Work Title
+- Genre (Sub-genre)
+- Date of Composition
+- Date of Premiere
+- Location of Premiere: Venue, City, Country
+- Date of Publication
+- Corpus Examples
+
+NOTES:
+- In cases where the venue in unknown, use "unknown" and use gocoding for city
+- Corpus Examples are listed anbd associated with links to website example pages (https://polyrhythm.humdrum.org/)
 
 ![Original CARTO premieres map](premieres-carto.png)
 
