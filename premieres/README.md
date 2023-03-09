@@ -1,4 +1,4 @@
-# Premieres Map
+# Corpus Map
 
 This map is meant to show the locations of where certain works first premiered. The original interactive map included features that were displayed as a heat map at certain levels. When zoomed in, a user could click on a work and get metadata elements. All metadata is availble on FDS_Metadata_1900DS_ArcGIS_18May2019_master (https://docs.google.com/spreadsheets/d/17rjKQ3lXJHEHAcDfOXTDNX5a0A_jVqwokcaqhd3Ddng/edit?usp=sharing)
 
@@ -7,7 +7,7 @@ Metadata points for this map include:
 - Work Title
 - Genre (Sub-genre)
 - Date of Composition
-- Date of Premiere
+- Date of First Public Performance
 - Date of Publication
 - Location of Premiere: Venue, City, Country
 - Performing Ensemble, Conductor, Soloist(s)
