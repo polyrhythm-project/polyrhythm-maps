@@ -2,6 +2,8 @@
 
 This map is meant to show the birthplace and death locations of composers. The original interactive map included line features connecting the birth and death locations. Birth and death locations were classified by different coloured markers.
 
+Birth and death locations are given using two data points: City and Country. In cases where locations have changed name, both names are given, with the modern name given in parentheses.
+
 Clicking? Hovering? Filtering?
 
 ![Original CARTO composers map](composers-carto.png)
