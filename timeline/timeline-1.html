@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Leaflet</title>
+    <title>Timeline-1</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -59,8 +59,24 @@
         }
       ).addTo(map);
 
-      //Creates a marker layer
-      var testlayer = L.geoJson(data).addTo(map);
+      //Create a marker layer with attribute popups
+      var testlayer = L.geoJSON(data, {
+        onEachFeature: function (feature, layer) {
+          if (
+            feature.properties &&
+            feature.properties.work_title &&
+            feature.properties.premiere_date
+          ) {
+            layer.bindPopup(
+              "<h4>Premiere Date:" +
+                feature.properties.premiere_date +
+                "</h4><p>Work: " +
+                feature.properties.work_title +
+                "</p>"
+            );
+          }
+        },
+      }).addTo(map);
 
       // Paste in SliderControl.js file
       L.Control.SliderControl = L.Control.extend({
@@ -310,9 +326,11 @@
 
       //Add the slider to the map
       map.addControl(sliderControl);
+
       //Initialize the slider
       sliderControl.startSlider();
 
+      // Set timestamp property
       $("#slider-timestamp").html(
         options.markers[ui.value].feature.properties.premiere_date.substr(0, 19)
       );
