@@ -1,11 +1,22 @@
 # Timeline Map
 
-This map is meant to show the locations of where certain works premiered over time. The original interactive maps included features that allowed the user to filter the data by:
+This map is meant to show the locations of where certain works premiered over time. All metadata is availble on FDS_Metadata_1900DS_ArcGIS_18May2019_master (https://docs.google.com/spreadsheets/d/17rjKQ3lXJHEHAcDfOXTDNX5a0A_jVqwokcaqhd3Ddng/edit?usp=sharing)
 
-- Works title
-- Composer
-- Genre
-- Time range
+Metadata points for this map include:
+
+- Composer Name
+- Work Title
+- Genre (Sub-genre)
+- Date of Composition
+- Date of Premiere
+- Location of Premiere: Venue, City, Country
+- Date of Publication
+- Corpus Examples
+
+NOTES:
+
+- In cases where the venue in unknown, use "unknown" and use gocoding for city
+- Corpus Examples are listed anbd associated with links to website example pages (https://polyrhythm.humdrum.org/)
 
 The timeline feature allowed users to "play" the map to show locations highlight in the map automatically as the slider moved through time.
 
