@@ -4,12 +4,16 @@ This map is meant to show the birthplace and death locations of composers. The o
 
 Metadata include the following fields:
 - Composer Name
+- Nationality
 - Birth Date
 - Birth Place
 - Death Date
 - Death Place
+- Corpus Representation
 
-NOTES: Birth and death locations are given using two data points: City and Country. In cases where locations have changed name, both names are given, with the modern name given in parentheses.
+NOTES: 
+- Birth and death locations are given using two data points: City and Country. In cases where locations have changed name, both names are given, with the modern name given in parentheses.
+- Corpus Representation is available on the composers' page by number of works and number of examples (https://polyrhythm.humdrum.org/composers/). Please provide the number, with % of the whole corpus in parentheses (one decimal), e.g., 40 works (8.9%). These will need to added to the csv/GeoJSON files.
 
 Clicking? Hovering? Filtering?
 
