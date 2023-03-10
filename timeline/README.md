@@ -39,3 +39,101 @@ The timeline feature allowed users to "play" the map to show locations highlight
 - [https://www.youtube.com/watch?v=XvKu6_b6aRM](https://www.youtube.com/watch?v=XvKu6_b6aRM) - Learn Leaflet with Mapster - Animation
 - [https://leafletjs.com/reference.html#geojson-filter](https://leafletjs.com/reference.html#geojson-filter) - Built-in GeoJSON filtering option
 - [https://www.youtube.com/watch?v=x4MGSkw6QnM](https://www.youtube.com/watch?v=x4MGSkw6QnM) - Learn Leaflet with Mapster - Filters (dropdowns)
+
+
+## Solutions Documentation 
+
+- [timeline-boilerplate.html](./timeline-boilerplate.html) provides a basemap for modifying according to the workflows below. 
+    
+### Implementing Leaflet time slider plugin - Method 1
+
+See [timeline-1.html](./timeline-1.html) for map with timeline slider built referencing code and documentation from [http://dwilhelm89.github.io/LeafletSlider/](http://dwilhelm89.github.io/LeafletSlider/)
+
+1. Convert csv data to geoJSON - drag into https://geojson.io/ to visualize and "Save" in geoJSON format 
+2. Add data.geojson to appropriate repo folder. Then wrap the data as a variable (simply add `var =` before the data on the first line) and save the file to javascript format. It should now appear as `data.js`
+3. In the body of your html document and within the `<script>` element, your add data.js to the map as a variable called `testlayer`
+
+```js
+var testlayer = L.geoJson(data).addTo(map);
+```
+    
+To direct your html document to the dataset, also include the following in the <head> element
+
+`<script src="./data.js" charset="utf-8"></script>`
+
+4. Create and save a new .js file with the contents of [SliderControl.js](https://github.com/dwilhelm89/LeafletSlider/blob/master/SliderControl.js)
+
+To direct your html document to the SliderControl, also include the following in the <head> element
+`<script src="./SliderControl.js"></script>`
+
+5. Add the following [jquery](https://jqueryui.com/download/) javascript and CSS file source links to your map document in the head element. 
+
+```html
+
+    <!-- Add jquery CSS source-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"
+    />
+        
+    <!-- Add jquery ui Javascript sources-->
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+    
+```
+
+6. The rest of the steps involve adding to the `<script>` element within the body of the html document. Beneath the testlayer variable created to render the data points, copy and paste the contents of `SliderControl.js` This is a sizable chunk of code so you can collapse it once added.  
+
+7. Create a variable for the SliderControl
+```js
+var sliderControl = L.control.sliderControl({
+        position: "topright",
+        layer: testlayer,
+        range: true
+      });
+```
+
+8. Add the control to the map
+```js
+map.addControl(sliderControl);
+```
+
+9. Initialize the control
+```js
+    sliderControl.startSlider();
+```
+10. Set the dataset property which represents the timestamp of interest. Here it is set to "premiere_data"
+```js
+$('#slider-timestamp').html(options.markers[ui.value].feature.properties.premiere_date.substr(0, 19));
+```
+
+#### Adding metadata popups to map composed w/ Method 1 
+To create elementary popups that retrieve a single attribute property for each point on click, replace the initial line of code which sets a variable and adds the data layer as a map object with the following.
+
+```js
+var testlayer = L.geoJSON(data, {
+        onEachFeature: function (feature, layer) {
+          if (
+            feature.properties &&
+            feature.properties.work_title &&
+            feature.properties.premiere_date 
+            //to retrieve additional properties  
+            // add another '&&' on the last line
+            // followed by feature.properties.PROPERTY 
+          ) {
+            layer.bindPopup(
+              "<h4>Premiere Date:" +
+                feature.properties.premiere_date +
+                "</h4><p>Work: " +
+                feature.properties.work_title +
+                "</p>"
+                //for additional properties to be 
+                //displayed in the popup, continue building
+                //the expression here
+            );
+          }
+        },
+      }).addTo(map);
+```
