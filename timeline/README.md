@@ -54,21 +54,27 @@ To direct your html document to the dataset, also include the following in the <
 To direct your html document to the SliderControl, also include the following in the <head> element
 `<script src="./SliderControl.js"></script>`
 
-5. Download [jquery](https://jqueryui.com/download/). Keep all boxes checked as is and scroll all the way to the bottom. Keep the Base theme. No need to set a CSS scope. Extract the contents of the downloaded zip file and add to the appropriate repo folder. 
-
-6. To direct your html document to the necessary jquery CSS and Javascript files, add the following to the bottom of the <head> element. `src=` sets the filepath. The links begin with ./ to indicate the files are stored locally within the same directory the map html document. 
+5. Add the following [jquery](https://jqueryui.com/download/) javascript and CSS file source links to your map document in the head element. 
 
 ```html
 
-    <link rel="stylesheet" type="text/css" href="./jquery-ui-1.13.2/jquery-ui.css"/>
+    <!-- Add jquery CSS source-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"
+    />
         
-    <script src="./jquery-ui-1.13.2/external/jquery/jquery.js"></script>
-    <script src="./jquery-ui-1.13.2/jquery-ui.min.js"></script>
+    <!-- Add jquery ui Javascript sources-->
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+    
 ```
 
-7. The rest of the steps involve adding to the `<script>` element within the body of the html document. Beneath the testlayer variable created to render the data points, copy and paste the contents of `SliderControl.js` This is a sizable chunk of code so you can collapse it once added.  
+6. The rest of the steps involve adding to the `<script>` element within the body of the html document. Beneath the testlayer variable created to render the data points, copy and paste the contents of `SliderControl.js` This is a sizable chunk of code so you can collapse it once added.  
 
-8. Create a variable for the SliderControl
+7. Create a variable for the SliderControl
 ```js
 var sliderControl = L.control.sliderControl({
         position: "topright",
@@ -77,15 +83,16 @@ var sliderControl = L.control.sliderControl({
       });
 ```
 
-9. Add the control to the map
+8. Add the control to the map
 ```js
 map.addControl(sliderControl);
 ```
-10. Initialize the control
+
+9. Initialize the control
 ```js
     sliderControl.startSlider();
 ```
-11. Set the dataset property which represents the timestamp of interest. Here it is set to "premiere_data"
+10. Set the dataset property which represents the timestamp of interest. Here it is set to "premiere_data"
 ```js
 $('#slider-timestamp').html(options.markers[ui.value].feature.properties.premiere_date.substr(0, 19));
 ```
