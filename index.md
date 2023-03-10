@@ -1,3 +1,3 @@
 
 
-* [composers](composer/composers.geojson)
+* [composers](composers/composers.geojson)
