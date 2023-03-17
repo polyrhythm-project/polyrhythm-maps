@@ -1,7 +1,7 @@
 <html>
   <head>
 
-    <title>Leaflet debug page</title>
+    <title>Corpus Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,7 @@
     ).addTo(map);
 
     //Paste the L.geoJSON function here
-    L.geoJSON(corpusdata).addTo(map);
+    //L.geoJSON(corpusdata).addTo(map);
 
     var markers=L.markerClusterGroup();
     var marker=L.geoJSON(corpusdata);
