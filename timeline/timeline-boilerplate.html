@@ -11,12 +11,21 @@
       integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
       crossorigin=""
     />
+
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script
       src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
       crossorigin=""
     ></script>
+
+    <!-- Add data source wrapped as a variable -->
+
+    <!-- Add Slider Control source-->
+
+    <!-- Add jquery CSS source-->
+
+    <!-- Add jquery ui Javascript sources-->
   </head>
 
   <body>
@@ -25,7 +34,7 @@
 
     <script>
       // Initializes map; sets the initial view location and zoom level
-      var map = L.map("map").setView([42, -35], 2);
+      var map = L.map("map").setView([42, -35], 3);
 
       //Loads the tile layer; can be changed to layer and style of your choice
       L.tileLayer(
@@ -40,6 +49,20 @@
           style: "light_all",
         }
       ).addTo(map);
+
+      //Add marker layer to map
+
+      // Paste in SliderControl.js file
+
+      //Set a variable for SliderControl
+
+      //Add the slider to the map
+
+      //Initialize the slider
+
+      // Set timestamp property
+
+      
     </script>
   </body>
 </html>
