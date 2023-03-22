@@ -51,7 +51,24 @@
     markers.addLayer(marker);
     map.addLayer(markers);
 
-
+    //Popup
+    var pop_up=L.geoJSON(corpusdata,{
+      onEachFeature:function(feature,layer){
+        if(
+          feature.properties &&
+          feature.perperties.composer_s_name&&
+          feature.properties.work_title
+          )
+        {
+          layer.bindPopup(
+            "<h4>Composer name"+ feature.perperties.composer_s_name+
+            "<h4>Work Title"+feature.properties.work_title+
+              "</p>"
+          );
+        }
+      },
+    }).addTo(map);
+  
     </script>
 
   </body>
