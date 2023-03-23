@@ -6,17 +6,17 @@ Metadata points for this map include:
 - Composer Name
 - Work Title
 - Genre (Sub-genre)
-- Date of Composition
-- Date of First Public Performance
-- Date of Publication
-- Location of Premiere: Venue, City, Country
+- Composition Year
+- Premiere Year
+- Publication Year
+- Premiere Location: Venue, City, Country
 - Performing Ensemble, Conductor, Soloist(s)
-- Corpus Examples
+- List of Corpus Examples ID
 
 NOTES:
 - In cases where the venue in unknown, use "unknown" as data point and use gocoding for city
 - In cases where there is no performing ensemble, conductor, or soloist, use "none" or "unknown" as datapoint (refer to FDS master)
-- Corpus Examples are listed anbd associated with links to website example pages (https://polyrhythm.humdrum.org/)
+- Corpus Examples are listed anbd associated with links to website example pages (https://polyrhythm.humdrum.org/); IDs start with a letter (R or T), followed by a three-digit number. A number of IDs end with an upper-case letter (A, B, C, or D) or a lower-case "x".
 
 
 The timeline feature allowed users to "play" the map to show locations highlight in the map automatically as the slider moved through time.
