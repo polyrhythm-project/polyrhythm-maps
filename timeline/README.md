@@ -11,7 +11,7 @@ Metadata points for this map include:
 - Publication Year
 - Premiere Location: Venue, City, Country
 - Performing Ensemble, Conductor, Soloist(s)
-- List of Corpus Examples ID
+- Corpus Examples
 
 NOTES:
 - In cases where the venue in unknown, use "unknown" as data point and use gocoding for city
