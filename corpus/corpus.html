@@ -1,24 +1,38 @@
 <html>
   <head>
-
     <title>Corpus Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-  
-    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" />
-    <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+      integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"
+      integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA=="
+      crossorigin=""
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="stylesheet"
+      href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css"
+    />
+    <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
 
     <!-- basemap libraries -->
 
-    <script type="text/javascript" src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js?v1.3.0">
-    </script>
+    <script
+      type="text/javascript"
+      src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js?v1.3.0"
+    ></script>
 
     <!-- geoJSON data -->
-    <script src="corpus.js" charset="utf-8"></script> 
+    <script src="corpus.js" charset="utf-8"></script>
   </head>
 
   <body>
@@ -30,46 +44,47 @@
       var map = L.map("map").setView([42, -35], 2);
 
       //Loads the tile layer; can be changed to layer and style of your choice
-      
-    L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', 
+
+      L.tileLayer(
+        "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}",
         {
-        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	      subdomains: 'abcd',
-	      minZoom: 0,
-	      maxZoom: 20,
-	      ext: 'png'
+          attribution:
+            'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          subdomains: "abcd",
+          minZoom: 0,
+          maxZoom: 20,
+          ext: "png",
         }
-    ).addTo(map);
+      ).addTo(map);
 
-    //Paste the L.geoJSON function here
-    //L.geoJSON(corpusdata).addTo(map);
+      //Paste the L.geoJSON function here
+      //L.geoJSON(corpusdata).addTo(map);
 
-    var markers=L.markerClusterGroup();
-    var marker=L.geoJSON(corpusdata);
+      var markers = L.markerClusterGroup();
+      var marker = L.geoJSON(corpusdata);
 
-    //leaflet marker cluster
-    markers.addLayer(marker);
-    map.addLayer(markers);
+      //leaflet marker cluster
+      markers.addLayer(marker);
+      map.addLayer(markers);
 
-    //Popup
-    var pop_up=L.geoJSON(corpusdata,{
-      onEachFeature:function(feature,layer){
-        if(
-          feature.properties &&
-          feature.perperties.composer_s_name&&
-          feature.properties.work_title
-          )
-        {
-          layer.bindPopup(
-            "<h4>Composer name"+ feature.perperties.composer_s_name+
-            "<h4>Work Title"+feature.properties.work_title+
-              "</p>"
-          );
-        }
-      },
-    }).addTo(map);
-  
+      //Popup
+      var pop_up = L.geoJSON(corpusdata, {
+        onEachFeature: function (feature, layer) {
+          if (
+            feature.properties &&
+            feature.properties.composer_s_name &&
+            feature.properties.work_title
+          ) {
+            layer.bindPopup(
+              "<h4>Composer name" +
+                feature.properties.composer_s_name +
+                "<h4>Work Title" +
+                feature.properties.work_title +
+                "</p>"
+            );
+          }
+        },
+      }).addTo(map);
     </script>
-
   </body>
 </html>
