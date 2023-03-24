@@ -1,21 +1,31 @@
 # Composers Map
 
-This map is meant to show the birthplace and death locations of composers. The original interactive map included line features connecting the birth and death locations. Birth and death locations were classified by different coloured markers.
+This map is meant to show the birthplace and death locations of composers. The original interactive map included line features connecting the birth and death locations. Birth and death locations are shown in different colours (birth = green; death = red). Birth and death data points are connect with lines. Metadata is swhown in pop-ups that are activated by clicking on a point.
 
-Metadata include the following fields:
-- Composer Name
+Birth metadata include the following fields:
+- Composer
 - Nationality
-- Birth Date
-- Birth Place
-- Death Date
-- Death Place
-- Corpus Representation
+- Date
+- City
+- Country
+- Corpus Works
+- Corpus Examples
+
+Death metadata include the following fields:
+- Composer
+- Nationality
+- Date
+- City
+- Country
+- Corpus Works
+- Corpus Examples
 
 NOTES: 
+- Date, City, and Country change based on birth vs. death data points. Other fields (nationality, corpus works, and corpus examples) uprovide the same metadata for each composer.
 - Birth and death locations are given using two data points: City and Country. In cases where locations have changed name, both names are given, with the modern name given in parentheses.
 - Corpus Representation is available on the composers' page by number of works and number of examples (https://polyrhythm.humdrum.org/composers/). Please provide the number, with % of the whole corpus in parentheses (one decimal), e.g., 40 works (8.9%). These will need to added to the csv/GeoJSON files.
 
-Clicking? Hovering? Filtering?
+
 
 ![Original CARTO composers map](composers-carto.png)
 
