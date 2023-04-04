@@ -50,8 +50,10 @@ L.Control.SliderControl = L.Control.extend({
         this.options.map = map;
 
         // Create a control sliderContainer with a jquery ui slider
+        // Add image source for static graph. Still need to make div size responsive 
         var sliderContainer = L.DomUtil.create('div', 'slider', this._container);
-        $(sliderContainer).append('<div id="leaflet-slider" style="width:200px"><div class="ui-slider-handle"></div><div id="slider-timestamp" style="width:200px; margin-top:13px; background-color:#FFFFFF; text-align:center; border-radius:5px;"></div></div>');
+        $(sliderContainer).append('<img src="./works-premiered_20230404.png" style="width:300px; margin-right:80%; padding: 0px 0px 10px 0px;"><div id="leaflet-slider" style="width:300px;"><div class="ui-slider-handle"></div><div id="slider-timestamp" style="width:200px; margin-top:13px; background-color:#FFFFFF; text-align:center; border-radius:5px;"></div>');
+        
         //Prevent map panning/zooming while using the slider
         $(sliderContainer).mousedown(function () {
             map.dragging.disable();
