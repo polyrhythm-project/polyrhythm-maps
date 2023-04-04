@@ -130,7 +130,7 @@ Note: It seems the timeslider is rendering points not chronologically but in the
 To create elementary popups that retrieve a single attribute property for each point on click, replace the initial line of code which sets a variable and adds the data layer as a map object with the following.
 
 ```js
-var testlayer = L.geoJSON(corpus, {
+var testlayer = L.geoJSON(corpusdata, {
         onEachFeature: function (feature, layer) {
           if (
             feature.properties &&
@@ -153,16 +153,4 @@ var testlayer = L.geoJSON(corpus, {
           }
         },
       }).addTo(map);
-```
-
-### Trimming property string 
-To exclude the timestamp (which reads 00-00-00 in all occurrences) from the popup text paste the following code ABOVE the testlayer
-
-```js
-//TRIMS PREMIERE DATE
-      var premiereDate = L.geoJSON(corpusdata, {
-        forEachFeature: function (feature, layer) {
-          new Date(feature.properties.premiere_date.toDateString())
-        }
-      });
 ```
