@@ -20,7 +20,7 @@
     ></script>
 
     <!-- Add data source wrapped as a variable -->
-    <script src="./data.js" charset="utf-8"></script>
+    <script src="../corpus/corpus.js" charset="utf-8"></script>
 
     <!-- Add Slider Control source-->
     <script src="./SliderControl.js"></script>
@@ -72,18 +72,18 @@
         }
       ).addTo(map);
 
-      //Create a marker layer with attribute popups
-      var testlayer = L.geoJSON(data, {
+      
+      var testlayer = L.geoJSON(corpusdata, {
         onEachFeature: function (feature, layer) {
           if (
             feature.properties &&
             feature.properties.work_title &&
-            feature.properties.premiere_date
+            feature.properties.premiere_date 
           ) {
             layer.bindPopup(
-              "<h4>Premiere Date:" +
+              "<p><b>Premiere Date: </b>" +
                 feature.properties.premiere_date +
-                "</h4><p>Work: " +
+                "<br><b>Work: </b>" +
                 feature.properties.work_title +
                 "</p>"
             );
