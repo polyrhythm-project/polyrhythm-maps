@@ -50,23 +50,18 @@ The timeline feature allowed users to "play" the map to show locations highlight
 See [timeline-1.html](./timeline-1.html) for map with timeline slider built referencing code and documentation from [http://dwilhelm89.github.io/LeafletSlider/](http://dwilhelm89.github.io/LeafletSlider/)
 
 1. Convert csv data to geoJSON - drag into https://geojson.io/ to visualize and "Save" in geoJSON format 
-2. Add data.geojson to appropriate repo folder. Then wrap the data as a variable (simply add `var =` before the data on the first line) and save the file to javascript format. It should now appear as `data.js`
-3. In the body of your html document and within the `<script>` element, your add data.js to the map as a variable called `testlayer`
+2. Add corpus.geojson to appropriate repo folder. Then wrap the data as a variable (simply add `var corpusdata =` before the data on the first line) and save the file to javascript format. It should now appear as `corpus.js`
+3. In the body of your html document and within the `<script>` element, your add data to the map as a variable called `testlayer`
 
 ```js
-var testlayer = L.geoJson(data).addTo(map);
+var testlayer = L.geoJson(corpusdata).addTo(map);
 ```
     
 To direct your html document to the dataset, also include the following in the <head> element
 
-`<script src="./data.js" charset="utf-8"></script>`
+`<script src="../corpus/corpus.js" charset="utf-8"></script>`
 
-4. Create and save a new .js file with the contents of [SliderControl.js](https://github.com/dwilhelm89/LeafletSlider/blob/master/SliderControl.js)
-
-To direct your html document to the SliderControl, also include the following in the <head> element
-`<script src="./SliderControl.js"></script>`
-
-5. Add the following [jquery](https://jqueryui.com/download/) javascript and CSS file source links to your map document in the head element. 
+4. Add the following [jquery](https://jqueryui.com/download/) javascript and CSS file source links to your map document in the head element. 
 
 ```html
 
@@ -81,18 +76,58 @@ To direct your html document to the SliderControl, also include the following in
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
-    
 ```
 
-6. The rest of the steps involve adding to the `<script>` element within the body of the html document. Beneath the testlayer variable created to render the data points, copy and paste the contents of `SliderControl.js` This is a sizable chunk of code so you can collapse it once added.  
+5. Add the following css style for the slider bar within the document head 
 
-7. Create a variable for the SliderControl
+```html
+ <!-- SLIDER CSS -->
+    <style>
+    #map .slider {
+        background: rgba(255, 255, 255, 0.40);
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        border-radius: 6px;
+        text-align: center;
+        padding: 10px 50px 35px 50px;
+        position: bottom left;
+    }
+    </style>
+```
+
+6. Create and save a new .js file with the contents of [SliderControl.js](https://github.com/dwilhelm89/LeafletSlider/blob/master/SliderControl.js)
+    
+To direct your html document to the SliderControl, also include the following in the <head> element
+`<script src="./SliderControl.js"></script>`
+
+Open the js file. It should begin with `L.Control.SliderControl = L.Control.extend({` 
+    
+Replace the preset options with the following:
+
+```js
+options: {
+        position: 'bottomleft',
+        timeAttribute: 'first_publication_year',
+        isEpoch: false,     // whether the time attribute is seconds elapsed from epoch
+        startTimeIdx: 0,    // where to start looking for a timestring
+        timeStrLength: 4,  // the size of  yyyy-mm-dd hh:mm:ss 
+        maxValue: -1,
+        minValue: 0,
+        showAllOnStart: false,
+        markers: null,
+        range: true,
+        follow: false,
+        sameDate: false,
+        alwaysShowDate : false,
+        rezoom: null
+    },
+```
+
+
+7. The rest of the steps involve adding to the `<script>` element within the body of the html document. Create a variable for the sliderControl and add set the layer option to be `testlayer`
 ```js
 var sliderControl = L.control.sliderControl({
-        position: "topright",
         layer: testlayer,
-        range: true
-      });
+});
 ```
 
 8. Add the control to the map
@@ -104,16 +139,18 @@ map.addControl(sliderControl);
 ```js
     sliderControl.startSlider();
 ```
-10. Set the dataset property which represents the timestamp of interest. Here it is set to "premiere_data"
+10. Set the dataset property which represents the timestamp of interest. Here it is set to "first_publication_year"
 ```js
-$('#slider-timestamp').html(options.markers[ui.value].feature.properties.premiere_date.substr(0, 19));
+$('#slider-timestamp').html(options.markers[ui.value].feature.properties.first_publication_year);
 ```
+Note: It seems the timeslider is rendering points not chronologically but in the order they are stored in the corpus.js data file. When the timeAttribute option within the sliderControl.js file is set to premiere_date, the date is dynamically rendered in the slider bar but still is not chronological. 
+
 
 #### Adding metadata popups to map composed w/ Method 1 
 To create elementary popups that retrieve a single attribute property for each point on click, replace the initial line of code which sets a variable and adds the data layer as a map object with the following.
 
 ```js
-var testlayer = L.geoJSON(data, {
+var testlayer = L.geoJSON(corpusdata, {
         onEachFeature: function (feature, layer) {
           if (
             feature.properties &&
@@ -121,7 +158,7 @@ var testlayer = L.geoJSON(data, {
             feature.properties.premiere_date 
             //to retrieve additional properties  
             // add another '&&' on the last line
-            // followed by feature.properties.PROPERTY 
+            // followed by feature.properties.YOUR_PROPERTY 
           ) {
             layer.bindPopup(
               "<h4>Premiere Date:" +

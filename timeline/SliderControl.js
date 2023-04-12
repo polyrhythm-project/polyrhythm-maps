@@ -1,16 +1,15 @@
 L.Control.SliderControl = L.Control.extend({
     options: {
-        position: 'topright',
-        layers: null,
-        timeAttribute: 'time',
+        position: 'bottomleft',
+        timeAttribute: 'first_publication_year',
         isEpoch: false,     // whether the time attribute is seconds elapsed from epoch
         startTimeIdx: 0,    // where to start looking for a timestring
-        timeStrLength: 19,  // the size of  yyyy-mm-dd hh:mm:ss - if millis are present this will be larger
+        timeStrLength: 4,  // the size of  yyyy-mm-dd hh:mm:ss - if millis are present this will be larger
         maxValue: -1,
         minValue: 0,
         showAllOnStart: false,
         markers: null,
-        range: false,
+        range: true,
         follow: false,
         sameDate: false,
         alwaysShowDate : false,

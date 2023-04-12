@@ -89,13 +89,11 @@
             );
           }
         },
-      }).addTo(map);
+      });
 
       //Sets variable for SliderControl
       var sliderControl = L.control.sliderControl({
-        position: "bottomleft",
         layer: testlayer,
-        range: true,
       });
 
       //Add the slider to the map
@@ -106,8 +104,7 @@
 
       // Set timestamp property
       $("#slider-timestamp").html(
-        options.markers[ui.value].feature.properties.premiere_date.substr(0, 19)
-      );
+        options.markers[ui.value].feature.properties.first_publication_year)
     </script>
   </body>
 </html>
