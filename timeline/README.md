@@ -50,23 +50,18 @@ The timeline feature allowed users to "play" the map to show locations highlight
 See [timeline-1.html](./timeline-1.html) for map with timeline slider built referencing code and documentation from [http://dwilhelm89.github.io/LeafletSlider/](http://dwilhelm89.github.io/LeafletSlider/)
 
 1. Convert csv data to geoJSON - drag into https://geojson.io/ to visualize and "Save" in geoJSON format 
-2. Add data.geojson to appropriate repo folder. Then wrap the data as a variable (simply add `var corpusdata =` before the data on the first line) and save the file to javascript format. It should now appear as `corpus.js`
-3. In the body of your html document and within the `<script>` element, your add data.js to the map as a variable called `testlayer`
+2. Add corpus.geojson to appropriate repo folder. Then wrap the data as a variable (simply add `var corpusdata =` before the data on the first line) and save the file to javascript format. It should now appear as `corpus.js`
+3. In the body of your html document and within the `<script>` element, your add data to the map as a variable called `testlayer`
 
 ```js
-var testlayer = L.geoJson(data).addTo(map);
+var testlayer = L.geoJson(corpusdata).addTo(map);
 ```
     
 To direct your html document to the dataset, also include the following in the <head> element
 
-`<script src="./data.js" charset="utf-8"></script>`
+`<script src="./corpus.js" charset="utf-8"></script>`
 
-4. Create and save a new .js file with the contents of [SliderControl.js](https://github.com/dwilhelm89/LeafletSlider/blob/master/SliderControl.js)
-
-To direct your html document to the SliderControl, also include the following in the <head> element
-`<script src="./SliderControl.js"></script>`
-
-5. Add the following [jquery](https://jqueryui.com/download/) javascript and CSS file source links to your map document in the head element. 
+4. Add the following [jquery](https://jqueryui.com/download/) javascript and CSS file source links to your map document in the head element. 
 
 ```html
 
@@ -83,7 +78,7 @@ To direct your html document to the SliderControl, also include the following in
 
 ```
 
-6. Add the following css style for the slider bar within the document head 
+5. Add the following css style for the slider bar within the document head 
 
 ```html
  <!-- SLIDER CSS -->
@@ -99,7 +94,12 @@ To direct your html document to the SliderControl, also include the following in
     </style>
 ```
 
-6. Save the `SliderControl.js` function as a javascript file within the same directory as the map. It should begin with `L.Control.SliderControl = L.Control.extend({` 
+6. Create and save a new .js file with the contents of [SliderControl.js](https://github.com/dwilhelm89/LeafletSlider/blob/master/SliderControl.js)
+    
+To direct your html document to the SliderControl, also include the following in the <head> element
+`<script src="./SliderControl.js"></script>`
+
+Open the js file. It should begin with `L.Control.SliderControl = L.Control.extend({` 
     
 Replace the preset options with the following:
 
