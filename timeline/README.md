@@ -59,7 +59,7 @@ var testlayer = L.geoJson(corpusdata).addTo(map);
     
 To direct your html document to the dataset, also include the following in the <head> element
 
-`<script src="./corpus.js" charset="utf-8"></script>`
+`<script src="../corpus/corpus.js" charset="utf-8"></script>`
 
 4. Add the following [jquery](https://jqueryui.com/download/) javascript and CSS file source links to your map document in the head element. 
 
