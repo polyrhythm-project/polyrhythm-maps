@@ -1,24 +1,38 @@
 <html>
   <head>
-
     <title>Corpus Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-  
-    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css" />
-    <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+      integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"
+      integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA=="
+      crossorigin=""
+    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="stylesheet"
+      href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css"
+    />
+    <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
 
     <!-- basemap libraries -->
 
-    <script type="text/javascript" src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js?v1.3.0">
-    </script>
+    <script
+      type="text/javascript"
+      src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js?v1.3.0"
+    ></script>
 
     <!-- geoJSON data -->
-    <script src="corpus.js" charset="utf-8"></script> 
+    <script src="corpus.js" charset="utf-8"></script>
   </head>
 
   <body>
@@ -30,29 +44,48 @@
       var map = L.map("map").setView([42, -35], 2);
 
       //Loads the tile layer; can be changed to layer and style of your choice
-      
-    L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', 
+
+      L.tileLayer(
+        "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}",
         {
-        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	      subdomains: 'abcd',
-	      minZoom: 0,
-	      maxZoom: 20,
-	      ext: 'png'
+          attribution:
+            'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          subdomains: "abcd",
+          minZoom: 0,
+          maxZoom: 20,
+          ext: "png",
         }
-    ).addTo(map);
+      ).addTo(map);
 
-    //Paste the L.geoJSON function here
-    //L.geoJSON(corpusdata).addTo(map);
+      //Paste the L.geoJSON function here
+      //L.geoJSON(corpusdata).addTo(map);
 
-    var markers=L.markerClusterGroup();
-    var marker=L.geoJSON(corpusdata);
+      var markers = L.markerClusterGroup();
+   
 
-    //leaflet marker cluster
-    markers.addLayer(marker);
-    map.addLayer(markers);
+      L.geoJSON(corpusdata,{
+        onEachFeature: function(feature,layer){
+          var popupContent="<b>Composer name: </b>"+feature.properties.composer_s_name+
+          "<br><b>Work Title: </b>"+feature.properties.work_title+
+          "<br><b>Genre: </b>"+feature.properties.genre+
+          "<br><b>Sub Genre: </b>"+feature.properties.sub_genre+
+          "<br><b>Composition year: </b>"+feature.properties.composition_year+
+          "<br><b>Premiere Date: </b>"+feature.properties.premiere_date+
+          "<br><b>Publication Year: </b>"+feature.properties.first_publication_year+
+          "<br><b>Premiere Location: </b>"+feature.properties.venue_or_city+
+          "<br><b>Performing Ensemble: </b>"+feature.properties.ensemble+
+          "<br><b>Conductor: </b>"+feature.properties.conductor+
+          "<br><b>soloists: </b>"+feature.properties.soloists+
+          "<br><b>Corpus example: </b>"+feature.properties.example_no_2;
 
 
+          layer.bindPopup(popupContent);
+
+        }
+      }).addTo(markers);
+      markers.addTo(map);
+
+      
     </script>
-
   </body>
 </html>
