@@ -99,15 +99,35 @@ To direct your html document to the SliderControl, also include the following in
     </style>
 ```
 
-6. The rest of the steps involve adding to the `<script>` element within the body of the html document. Beneath the testlayer variable created to render the data points, copy and paste the contents of `SliderControl.js` This is a sizable chunk of code so you can collapse it once added.  
+6. Save the `SliderControl.js` function as a javascript file within the same directory as the map. It should begin with `L.Control.SliderControl = L.Control.extend({` 
+    
+Replace the preset options with the following:
 
-7. Create a variable for the SliderControl
+```js
+options: {
+        position: 'bottomleft',
+        timeAttribute: 'first_publication_year',
+        isEpoch: false,     // whether the time attribute is seconds elapsed from epoch
+        startTimeIdx: 0,    // where to start looking for a timestring
+        timeStrLength: 4,  // the size of  yyyy-mm-dd hh:mm:ss 
+        maxValue: -1,
+        minValue: 0,
+        showAllOnStart: false,
+        markers: null,
+        range: true,
+        follow: false,
+        sameDate: false,
+        alwaysShowDate : false,
+        rezoom: null
+    },
+```
+
+
+7. The rest of the steps involve adding to the `<script>` element within the body of the html document. Create a variable for the sliderControl and add set the layer option to be `testlayer`
 ```js
 var sliderControl = L.control.sliderControl({
-        position: "bottomleft",
         layer: testlayer,
-        range: true
-      });
+});
 ```
 
 8. Add the control to the map
@@ -119,9 +139,9 @@ map.addControl(sliderControl);
 ```js
     sliderControl.startSlider();
 ```
-10. Set the dataset property which represents the timestamp of interest. Here it is set to "premiere_data"
+10. Set the dataset property which represents the timestamp of interest. Here it is set to "first_publication_year"
 ```js
-$('#slider-timestamp').html(options.markers[ui.value].feature.properties.premiere_date);
+$('#slider-timestamp').html(options.markers[ui.value].feature.properties.first_publication_year);
 ```
 Note: It seems the timeslider is rendering points not chronologically but in the order they are stored in the corpus.js data file. When the timeAttribute option within the sliderControl.js file is set to premiere_date, the date is dynamically rendered in the slider bar but still is not chronological. 
 
