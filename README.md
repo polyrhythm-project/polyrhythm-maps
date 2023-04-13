@@ -7,7 +7,10 @@ Each subdirectory in this repository contains the files and documentation for ea
 Contributors to the project:
 
 Prinpipal Investigator: Ève Poudrier
+
 Technical Director: Craig Sapp
+
 GIS Librarian: Evan Thornberry
+
 Graduate Consultants: Xilin Wan, Lily Demet
 
