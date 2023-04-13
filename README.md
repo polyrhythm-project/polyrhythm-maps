@@ -4,7 +4,7 @@ This repository is a workspace for collaborating on building three maps related 
 
 Each subdirectory in this repository contains the files and documentation for each of the three maps: Composers, Corpus, and Timeline.
 
-Contributors to the project:
+**Contributors to the project:**
 
 Principal Investigator: Ève Poudrier
 
