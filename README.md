@@ -4,6 +4,10 @@ This repository is a workspace for collaborating on building three maps related 
 
 Each subdirectory in this repository contains the files and documentation for each of the three maps: Composers, Corpus, and Timeline.
 
+* [Composers](https://github.com/polyrhythm-project/polyrhythm-maps/blob/master/composers/README.md)
+* [Corpus](https://github.com/polyrhythm-project/polyrhythm-maps/blob/master/corpus/README.md)
+* [Timeline](https://github.com/polyrhythm-project/polyrhythm-maps/blob/master/timeline/README.md)
+
 **Contributors to the project:**
 
 Principal Investigator: Ève Poudrier
