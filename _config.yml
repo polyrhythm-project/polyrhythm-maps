@@ -1,0 +1,18 @@
+repository: "polyrhythm-project/polyrhythm-maps"
+
+# host: The preview server used. Leave as is.
+host: 127.0.0.1
+
+# port: The port where the preview is rendered. You can leave this as is unless
+#  you have other Jekyll builds using this same port that might cause conflicts.
+#  In that case, use another port such as 4040.
+port: 3030
+
+# exclude: These are files and directories that jekyll will 
+# not copy into the compiled website.
+exclude:
+  - .gitignore
+  - Gemfile
+  - _config.yml
+  - .serve
+
