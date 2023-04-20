@@ -7,7 +7,7 @@ Metadata points for this map include:
 - Work Title
 - Genre (Sub-genre)
 - Composition Year
-- Premiere Year
+- Premiere Date
 - Publication Year
 - Premiere Location: Venue, City, Country
 - Performing Ensemble, Conductor, Soloist(s)
