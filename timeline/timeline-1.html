@@ -72,19 +72,59 @@
         }
       ).addTo(map);
 
+//       Composer Name
+// Work Title
+// Genre (Sub-genre)
+// Composition Year
+// Premiere Date
+// Publication Year
+// Premiere Location: Venue, City, Country
+// Performing Ensemble, Conductor, Soloist(s)
+// Corpus Examples
+
       
       var testlayer = L.geoJSON(corpusdata, {
         onEachFeature: function (feature, layer) {
           if (
             feature.properties &&
             feature.properties.work_title &&
-            feature.properties.premiere_date 
+            feature.properties.genre &&
+            feature.properties.sub_genre &&
+            feature.properties.composition_year &&
+            feature.properties.premiere_date &&
+            feature.properties.premiere_venue &&
+            feature.properties.premiere_city &&
+            feature.properties.premiere_country &&
+            feature.properties.ensemble &&
+            feature.properties.conductor &&
+            feature.properties.soloists &&
+            feature.properties.example_no_2
           ) {
             layer.bindPopup(
               "<p><b>Premiere Date: </b>" +
                 feature.properties.premiere_date +
                 "<br><b>Work: </b>" +
                 feature.properties.work_title +
+                "<br><b>Genre: </b>" +
+                feature.properties.genre +
+                "<br><b>Sub-genre: </b>" +
+                feature.properties.sub_genre +
+                "<br><b>Composition Year: </b>" +
+                feature.properties.composition_year +
+                "<br><b>Premiere Venue: </b>" +
+                feature.properties.premiere_venue +
+                "<br><b>Premiere City: </b>" +
+                feature.properties.premiere_city +
+                "<br><b>Premiere Country: </b>" +
+                feature.properties.premiere_country +
+                "<br><b>Ensemble: </b>" +
+                feature.properties.ensemble +
+                "<br><b>Conductor: </b>" +
+                feature.properties.conductor +
+                "<br><b>Soloists: </b>" +
+                feature.properties.soloists +
+                "<br><b>Corpus Example: </b>" +
+                feature.properties.example_no_2 +
                 "</p>"
             );
           }
