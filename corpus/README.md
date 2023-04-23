@@ -18,7 +18,9 @@ NOTES:
 - In cases where there is no performing ensemble, conductor, or soloist, use "none" or "unknown" as datapoint (refer to FDS master)
 -  Corpus Examples are listed and associated with links to website example pages (https://polyrhythm.humdrum.org/); IDs start with a letter (R or T), followed by a three-digit number. A number of IDs end with an upper-case letter (A, B, C, or D) or a lower-case "x".
 
-![Original CARTO premieres map](premieres-carto.png)
+Original Carto map:
+
+<img width="660" alt="Heatmap" src="https://user-images.githubusercontent.com/15526880/233502080-7b42e4f3-67d6-4e56-8f50-d3fc8180e9c9.png">
 
 # Proposed Solution
 
