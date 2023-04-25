@@ -50,17 +50,11 @@
         }
         map.createPane('pane_Tonerlite_0');
         map.getPane('pane_Tonerlite_0').style.zIndex = 400;
-        var layer_Tonerlite_0 = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png', {
-            pane: 'pane_Tonerlite_0',
-            opacity: 1.0,
-            attribution: '',
-            minZoom: 1,
-            maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 18
-        });
-        layer_Tonerlite_0;
-        map.addLayer(layer_Tonerlite_0);
+        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+});
+        Esri_WorldTopoMap;
+        map.addLayer(Esri_WorldTopoMap);
         function pop_Birth_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
