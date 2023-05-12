@@ -60,19 +60,17 @@
       // Initializes map; sets the initial view location and zoom level
       var map = L.map("map").setView([34, -35], 2.5);
 
-      // Load the tile layer; can be changed to layer and style of your choice
       L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/{style}/{z}/{x}/{y}" +
-          (L.Browser.retina ? "@2x.png" : ".png"),
-        {
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          subdomains: "abcd",
-          maxZoom: 20,
-          minZoom: 0,
-          style: "light_all",
-        }
-      ).addTo(map);
+          'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+    {
+      attribution:
+      'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
+      subdomains: "abcd",
+      minZoom: 0,
+      maxZoom: 20,
+      ext: "png",
+    }
+  ).addTo(map);
 
       var testlayer = L.geoJSON(corpusdata, {
         onEachFeature: function (feature, layer) {
@@ -128,7 +126,8 @@
       var sliderControl = L.control.sliderControl({
          layer: testlayer,
          timeAttribute: "premiere_year",
-         range: true
+         range: true,
+         position: 'bottomright',
       }).addTo(map);
 
       // Create premiere_year properties for markers by extracting
