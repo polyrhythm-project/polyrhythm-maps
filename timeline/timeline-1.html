@@ -46,7 +46,6 @@
             padding: 10px 40px 35px 40px;
             position: bottom left;     
         }
-
       </style>
       
   </head>
@@ -56,9 +55,8 @@
     <div id="map" style="height: 100%"></div>
 
     <script>
-
-      // Initializes map; sets the initial view location and zoom level
-      var map = L.map("map").setView([34, -35], 2.5);
+      // Initialize map; sets the initial view location and zoom level
+      var map = L.map("map").setView([42, -35], 3);
 
       // Load the tile layer; can be changed to layer and style of your choice
       L.tileLayer(
@@ -79,43 +77,13 @@
           if (
             feature.properties &&
             feature.properties.work_title &&
-            feature.properties.genre &&
-            feature.properties.sub_genre &&
-            feature.properties.composition_year &&
-            feature.properties.premiere_date &&
-            feature.properties.premiere_venue &&
-            feature.properties.premiere_city &&
-            feature.properties.premiere_country &&
-            feature.properties.ensemble &&
-            feature.properties.conductor &&
-            feature.properties.soloists &&
-            feature.properties.example_no_2
+            feature.properties.premiere_date 
           ) {
             layer.bindPopup(
               "<p><b>Premiere Date: </b>" +
                 feature.properties.premiere_date +
                 "<br><b>Work: </b>" +
                 feature.properties.work_title +
-                "<br><b>Genre: </b>" +
-                feature.properties.genre +
-                "<br><b>Sub-genre: </b>" +
-                feature.properties.sub_genre +
-                "<br><b>Composition Year: </b>" +
-                feature.properties.composition_year +
-                "<br><b>Premiere Venue: </b>" +
-                feature.properties.premiere_venue +
-                "<br><b>Premiere City: </b>" +
-                feature.properties.premiere_city +
-                "<br><b>Premiere Country: </b>" +
-                feature.properties.premiere_country +
-                "<br><b>Ensemble: </b>" +
-                feature.properties.ensemble +
-                "<br><b>Conductor: </b>" +
-                feature.properties.conductor +
-                "<br><b>Soloists: </b>" +
-                feature.properties.soloists +
-                "<br><b>Corpus Example: </b>" +
-                feature.properties.example_no_2 +
                 "</p>"
             );
           }
