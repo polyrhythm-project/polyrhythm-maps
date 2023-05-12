@@ -36,19 +36,17 @@
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
-       <!-- Slider and Static Graph Container -->
-       <style>
-        #map .slider {
-            background: rgba(255, 255, 255, 0.40);
-            box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
-            border-radius: 6px;
-            text-align: center;
-            padding: 10px 40px 35px 40px;
-            position: bottom left;     
-        }
-
-      </style>
-      
+    <!-- Slider and Static Graph Container -->
+    <style>
+      #map .slider {
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        border-radius: 6px;
+        text-align: center;
+        padding: 10px 40px 35px 40px;
+        position: bottom left;
+      }
+    </style>
   </head>
 
   <body>
@@ -56,21 +54,20 @@
     <div id="map" style="height: 100%"></div>
 
     <script>
-
       // Initializes map; sets the initial view location and zoom level
       var map = L.map("map").setView([34, -35], 2.5);
 
       L.tileLayer(
-          'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
-    {
-      attribution:
-      'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
-      subdomains: "abcd",
-      minZoom: 0,
-      maxZoom: 20,
-      ext: "png",
-    }
-  ).addTo(map);
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+        {
+          attribution:
+            "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012",
+          subdomains: "abcd",
+          minZoom: 0,
+          maxZoom: 20,
+          ext: "png",
+        }
+      ).addTo(map);
 
       var testlayer = L.geoJSON(corpusdata, {
         onEachFeature: function (feature, layer) {
@@ -123,45 +120,47 @@
       // Create SliderControl with setup options.
       // "timeAttribute" sets the timeline for the slider.
       // "range" sets a starting and ending point on the slider.
-      var sliderControl = L.control.sliderControl({
-         layer: testlayer,
-         timeAttribute: "premiere_year",
-         range: true,
-         position: 'bottomright',
-      }).addTo(map);
+      var sliderControl = L.control
+        .sliderControl({
+          layer: testlayer,
+          timeAttribute: "premiere_year",
+          range: true,
+          position: "bottomright",
+        })
+        .addTo(map);
 
       // Create premiere_year properties for markers by extracting
       // the year only from premiere_date property. e.g.: "3-Jan-1931"
       // will have "1931" extracted from it.
       // Note that properties must be strings (not numbers).
       let m = sliderControl.options.markers;
-      for (let i=0; i<m.length; i++) {
-          let value = m[i].feature.properties.premiere_date;
-          let matches = value.match(/(\d{4})/);
-          if (matches) {
-             m[i].feature.properties.premiere_year = matches[1];
-          } else {
-             // No invalid premiere_date values in the input data,
-             //but just in case, set to the year 3000:
-             m[i].feature.properties.premiere_year = "3000";
-          }
+      for (let i = 0; i < m.length; i++) {
+        let value = m[i].feature.properties.premiere_date;
+        let matches = value.match(/(\d{4})/);
+        if (matches) {
+          m[i].feature.properties.premiere_year = matches[1];
+        } else {
+          // No invalid premiere_date values in the input data,
+          //but just in case, set to the year 3000:
+          m[i].feature.properties.premiere_year = "3000";
+        }
       }
 
       // Sort sliderControl markers by premier_year:
       // Sorting numerically by year, but could also
       // sort premier_year string alphabetically in this case.
       sliderControl.options.markers.sort(function (a, b) {
-         let A = a.feature.properties.premiere_year;
-         let B = b.feature.properties.premiere_year;
-         A = parseInt(A);
-         B = parseInt(B);
-         if (A < B) {
-            return -1;
-         } else if (A > B) {
-            return +1;
-         } else {
-            return 0;
-         }
+        let A = a.feature.properties.premiere_year;
+        let B = b.feature.properties.premiere_year;
+        A = parseInt(A);
+        B = parseInt(B);
+        if (A < B) {
+          return -1;
+        } else if (A > B) {
+          return +1;
+        } else {
+          return 0;
+        }
       });
 
       // console.warn("FIRST PREMIER", m[0].feature.properties.premiere_year);
@@ -169,7 +168,6 @@
 
       // Initialize the slider
       sliderControl.startSlider();
-
     </script>
   </body>
 </html>
