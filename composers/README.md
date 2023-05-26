@@ -1,6 +1,6 @@
 # Composers Map
 
-This map shows the birthplace and death locations of composers, with corpus representation in terms of works and examples ID extracted from these works. The original interactive map included line features connecting the birth and death locations. Birth and death locations are shown in different colours (birth = green; death = red). Birth and death data points are connect with lines. Metadata is shown in pop-ups that are activated by clicking on a point.
+This map shows the corpus composers' birth and death dates and places (city and country), nationality. It also includes metadata for corpus representation in terms of works and examples ID extracted from these works. The original interactive map included line features connecting the birth and death locations. Birth and death locations are shown in different colours (birth = green; death = red). Birth and death data points are connect with lines. Metadata is shown in pop-ups that are activated by clicking on a point.
 
 Birth metadata include the following fields:
 - Composer
