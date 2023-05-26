@@ -1,6 +1,6 @@
 # Composers Map
 
-This map shows the corpus composers' birth and death dates and places (city and country), nationality. It also includes metadata for corpus representation in terms of works and examples ID extracted from these works. The original interactive map included line features connecting the birth and death locations. Birth and death locations are shown in different colours (birth = green; death = red). Birth and death data points are connect with lines. Metadata is shown in pop-ups that are activated by clicking on a point.
+This map shows the corpus composers' birth and death dates and places, and nationality. It also includes metadata for corpus representation in terms of works and examples ID extracted from these works. The original interactive map included line features connecting the birth and death locations. Birth and death locations are shown in different colours (birth = green; death = red). Birth and death data points are connect with lines. Metadata is shown in pop-ups that are activated by clicking on a point.
 
 Birth metadata include the following fields:
 - Composer
@@ -21,9 +21,9 @@ Death metadata include the following fields:
 - Corpus Examples
 
 NOTES: 
-- Date, City, and Country change based on birth vs. death data points. Other fields (nationality, corpus works, and corpus examples) uprovide the same metadata for each composer.
+- Date, City, and Country change based on birth vs. death data points. Other fields (nationality, corpus works, and corpus examples) provide the same metadata for each composer.
 - Birth and death locations are given using two data points: City and Country. In cases where locations have changed name, both names are given, with the modern name given in parentheses.
-- Corpus Representation is available on the composers' page by number of works and number of examples (https://polyrhythm.humdrum.org/composers/). Please provide the number, with % of the whole corpus in parentheses (one decimal), e.g., 40 works (8.9%). These will need to added to the csv/GeoJSON files.
+- Corpus Representation is available on the composers' page by number of works and number of examples (https://polyrhythm.humdrum.org/composers/). The number of examples is given with % representation within the whole corpus in parentheses (one decimal), e.g., 40 works (8.9%). These will need to added to the csv/GeoJSON files.
 
 
 
