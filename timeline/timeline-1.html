@@ -82,27 +82,53 @@
 
       var markers = L.markerClusterGroup();
 
-      L.geoJSON(corpusdata,{
-        onEachFeature: function(feature,layer){
-          var popupContent="<b>Composer name: </b>"+feature.properties.composer_s_name+
-          "<br><b>Work Title: </b>"+feature.properties.work_title+
-          "<br><b>Genre: </b>"+feature.properties.genre+
-          "<br><b>Sub Genre: </b>"+feature.properties.sub_genre+
-          "<br><b>Composition year: </b>"+feature.properties.composition_year+
-          "<br><b>Premiere Date: </b>"+feature.properties.premiere_date+
-          "<br><b>Publication Year: </b>"+feature.properties.first_publication_year+
-          "<br><b>Premiere Location: </b>"+feature.properties.venue_or_city+
-          "<br><b>Performing Ensemble: </b>"+feature.properties.ensemble+
-          "<br><b>Conductor: </b>"+feature.properties.conductor+
-          "<br><b>soloists: </b>"+feature.properties.soloists+
-          "<br><b>Corpus example: </b>"+feature.properties.example_no_2;
-
-
-          layer.bindPopup(popupContent);
-
-        }
-      }).addTo(markers);
-      markers.addTo(map);
+      var testlayer = L.geoJSON(corpusdata, {
+        onEachFeature: function (feature, layer) {
+          if (
+            feature.properties &&
+            feature.properties.work_title &&
+            feature.properties.genre &&
+            feature.properties.sub_genre &&
+            feature.properties.composition_year &&
+            feature.properties.premiere_date &&
+            feature.properties.premiere_venue &&
+            feature.properties.premiere_city &&
+            feature.properties.premiere_country &&
+            feature.properties.ensemble &&
+            feature.properties.conductor &&
+            feature.properties.soloists &&
+            feature.properties.example_no_2
+          ) {
+            layer.bindPopup(
+              "<p><b>Premiere Date: </b>" +
+                feature.properties.premiere_date +
+                "<br><b>Work: </b>" +
+                feature.properties.work_title +
+                "<br><b>Genre: </b>" +
+                feature.properties.genre +
+                "<br><b>Sub-genre: </b>" +
+                feature.properties.sub_genre +
+                "<br><b>Composition Year: </b>" +
+                feature.properties.composition_year +
+                "<br><b>Premiere Venue: </b>" +
+                feature.properties.premiere_venue +
+                "<br><b>Premiere City: </b>" +
+                feature.properties.premiere_city +
+                "<br><b>Premiere Country: </b>" +
+                feature.properties.premiere_country +
+                "<br><b>Ensemble: </b>" +
+                feature.properties.ensemble +
+                "<br><b>Conductor: </b>" +
+                feature.properties.conductor +
+                "<br><b>Soloists: </b>" +
+                feature.properties.soloists +
+                "<br><b>Corpus Example: </b>" +
+                feature.properties.example_no_2 +
+                "</p>"
+            );
+          }
+        },
+      });
 
       // Create SliderControl with setup options.
       // "timeAttribute" sets the timeline for the slider.
