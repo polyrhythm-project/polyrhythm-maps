@@ -21,3 +21,7 @@ GIS Librarian: Evan Thornberry
 Graduate Consultants: Xilin Wan, Lily Demet
 
 Link to documentation: https://docs.google.com/document/d/1LR19gyfLX9Cs1-96zJl-JLosPqwx40xkVM-CHvmu9vk/edit?usp=sharing
+
+List of repository contents:
+
+
