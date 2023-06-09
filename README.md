@@ -1,6 +1,6 @@
 # Polyrhythm Maps
 
-This repository is a workspace for collaborating on building three maps related to the Suter (1980) Corpus.
+This repository is a workspace for collaborating on building three maps related to the <em>Suter (1980) Corpus</em>.
 
 Each subdirectory in this repository contains the files and documentation for each of the three maps: Composers, Corpus, and Timeline.
 
