@@ -64,18 +64,18 @@
 
       L.geoJSON(corpusdata,{
         onEachFeature: function(feature,layer){
-          var popupContent="<b>Composer name: </b>"+feature.properties.composer_s_name+
-          "<br><b>Work Title: </b>"+feature.properties.work_title+
+          var popupContent="<b>Composer: </b>"+feature.properties.composer_s_name+
+          "<br><b>Work: </b>"+feature.properties.work_title+
           "<br><b>Genre: </b>"+feature.properties.genre+
-          "<br><b>Sub Genre: </b>"+feature.properties.sub_genre+
-          "<br><b>Composition year: </b>"+feature.properties.composition_year+
-          "<br><b>Premiere Date: </b>"+feature.properties.premiere_date+
+          "<br><b>Sub-Genre: </b>"+feature.properties.sub_genre+
+          "<br><b>Composition Year: </b>"+feature.properties.composition_year+
           "<br><b>Publication Year: </b>"+feature.properties.first_publication_year+
+          "<br><b>Premiere Date: </b>"+feature.properties.premiere_date+
           "<br><b>Premiere Location: </b>"+feature.properties.venue_or_city+
-          "<br><b>Performing Ensemble: </b>"+feature.properties.ensemble+
+          "<br><b>Ensemble: </b>"+feature.properties.ensemble+
           "<br><b>Conductor: </b>"+feature.properties.conductor+
-          "<br><b>soloists: </b>"+feature.properties.soloists+
-          "<br><b>Corpus example: </b>"+feature.properties.example_no_2;
+          "<br><b>Soloist(s): </b>"+feature.properties.soloists+
+          "<br><b>Corpus Example(s): </b>"+feature.properties.example_no_2;
 
 
           layer.bindPopup(popupContent);
