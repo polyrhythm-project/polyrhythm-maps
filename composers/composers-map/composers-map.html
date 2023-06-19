@@ -7,21 +7,21 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+	<link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/filter.css">
         <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css">
         <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css">
-
-<link rel="stylesheet" href="css/nouislider.min.css">
-        <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
-        </style>
-        <title></title>
+	<link rel="stylesheet" href="css/nouislider.min.css">
+            <style>
+            html, body, #map {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            </style>
+            <title></title>
     </head>
     <body>
         <div id="map">
@@ -37,8 +37,8 @@
         <script src="js/labels.js"></script>
         <script src="js/tailDT.js"></script>
         <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/wNumb.js"></script>
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/wNumb.js"></script>
         <script src="data/Birth_1.js"></script>
         <script src="data/Death_2.js"></script>
         <script src="data/lines_3.js"></script>
@@ -50,14 +50,10 @@
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-        }
         map.createPane('pane_Tonerlite_0');
         map.getPane('pane_Tonerlite_0').style.zIndex = 400;
         var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-});
-        Esri_WorldTopoMap;
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'});
         map.addLayer(Esri_WorldTopoMap);
         function pop_Birth_1(feature, layer) {
             var popupContent = '<table>\
@@ -259,7 +255,6 @@
         });
         bounds_group.addLayer(layer_lines_3);
         map.addLayer(layer_lines_3);
-        setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
         row.className="row";
