@@ -10,8 +10,6 @@
         <link rel="stylesheet" href="css/qgis2web.css">
 	<link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/filter.css">
-        <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.css">
-        <link rel="stylesheet" href="Leaflet.markercluster-1.4.1/dist/MarkerCluster.Default.css">
 	<link rel="stylesheet" href="css/nouislider.min.css">
             <style>
             html, body, #map {
@@ -36,13 +34,11 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/tailDT.js"></script>
-        <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
 	<script src="js/nouislider.min.js"></script>
 	<script src="js/wNumb.js"></script>
         <script src="data/Birth_1.js"></script>
         <script src="data/Death_2.js"></script>
         <script src="data/lines_3.js"></script>
-	<script src="https://unpkg.com/leaflet.overlappingmarkercluster/dist/leaflet.overlappingmarkercluster.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
@@ -108,7 +104,6 @@
         map.createPane('pane_Birth_1');
         map.getPane('pane_Birth_1').style.zIndex = 401;
         map.getPane('pane_Birth_1').style['mix-blend-mode'] = 'normal';
-	var markers = L.markerClusterGroup();
         var layer_Birth_1 = new L.geoJson(json_Birth_1, {
             attribution: '',
             interactive: true,
@@ -123,8 +118,7 @@
                 };
                 return L.circleMarker(latlng, style_Birth_1_0(feature));
             },
-        }).addTo(markers);
-        markers.addTo(map);
+        });
         bounds_group.addLayer(layer_Birth_1);
         map.addLayer(layer_Birth_1);
         function pop_Death_2(feature, layer) {
@@ -179,7 +173,6 @@
         map.createPane('pane_Death_2');
         map.getPane('pane_Death_2').style.zIndex = 402;
         map.getPane('pane_Death_2').style['mix-blend-mode'] = 'normal';
-	var markers = L.markerClusterGroup();
         var layer_Death_2 = new L.geoJson(json_Death_2, {
             attribution: '',
             interactive: true,
@@ -194,13 +187,7 @@
                 };
                 return L.circleMarker(latlng, style_Death_2_0(feature));
             },
-        }).addTo(markers);
-        markers.addTo(map);
-	var oms = new OverlappingMarkerSpiderfier(map, {
-	    keepSpiderfied: true, // Keep spiderfied markers open when clicked
-	    nearbyDistance: 30 // Define the proximity for spiderfying
-	});
-	oms.addMarker(markers); //Bind the spiderfier to the marker cluster group
+        });
         bounds_group.addLayer(layer_Death_2);
         map.addLayer(layer_Death_2);
         function pop_lines_3(feature, layer) {
