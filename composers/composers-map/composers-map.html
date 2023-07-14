@@ -190,14 +190,6 @@
         });
         bounds_group.addLayer(layer_Death_2);
         map.addLayer(layer_Death_2);
-        var baseMaps = {
-            "Esri": Esri_WorldTopoMap 
-        };
-        var overlayMaps = {
-            "Birth": layer_Birth_1,
-            "Death": layer_Death_2
-        };
-        var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
         function pop_lines_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -256,6 +248,16 @@
             onEachFeature: pop_lines_3,
             style: style_lines_3_0,
         });
+        bounds_group.addLayer(layer_lines_3);
+        map.addLayer(layer_lines_3);
+        var baseMaps = {
+            "Esri": Esri_WorldTopoMap 
+        };
+        var overlayMaps = {
+            "Birth": layer_Birth_1,
+            "Death": layer_Death_2
+        };
+        var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
         row.className="row";
