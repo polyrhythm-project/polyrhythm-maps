@@ -190,6 +190,14 @@
         });
         bounds_group.addLayer(layer_Death_2);
         map.addLayer(layer_Death_2);
+        var baseMaps = {
+            "Esri": Esri_WorldTopoMap 
+        };
+        var overlayMaps = {
+            "Birth": layer_Birth_1,
+            "Death": layer_Death_2
+        };
+        var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
         function pop_lines_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
