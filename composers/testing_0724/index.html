@@ -445,7 +445,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"Composer": "str","Map option": "str"};
+        var Filters = {"Composer": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -583,38 +583,6 @@
                 }
                 filterFunc();
             };
-            div_Composer.appendChild(reset_Composer);
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_Mapoption = document.createElement('div');
-            div_Mapoption.id = "div_Mapoption";
-            div_Mapoption.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Mapoption);
-            sel_Mapoption = document.createElement('select');
-            sel_Mapoption.multiple = true;
-            sel_Mapoption.size = 2;
-            sel_Mapoption.id = "sel_Mapoption";
-            var Mapoption_options_str = "<option value='' unselected></option>";
-            sel_Mapoption.onchange = function(){filterFunc()};
-            Mapoption_options_str  += '<option value="Advanced">Advanced</option>';
-            Mapoption_options_str  += '<option value="Basic">Basic</option>';
-            sel_Mapoption.innerHTML = Mapoption_options_str;
-            div_Mapoption.appendChild(sel_Mapoption);
-            var lab_Mapoption = document.createElement('div');
-            lab_Mapoption.innerHTML = 'Map option';
-            lab_Mapoption.className = 'filterlabel';
-            div_Mapoption.appendChild(lab_Mapoption);
-            var reset_Mapoption = document.createElement('div');
-            reset_Mapoption.innerHTML = 'clear filter';
-            reset_Mapoption.className = 'filterlabel';
-            reset_Mapoption.onclick = function() {
-                var options = document.getElementById("sel_Mapoption").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_Mapoption.appendChild(reset_Mapoption);
         </script>
     </body>
 </html>
