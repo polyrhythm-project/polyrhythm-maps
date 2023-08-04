@@ -424,7 +424,7 @@
         bounds_group.addLayer(layer_Death_5);
         map.addLayer(layer_Death_5);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Death_5.png" /> Death': layer_Death_5,'<img src="legend/Birth_4.png" /> Birth': layer_Birth_4,'<img src="legend/Intermediary_3.png" /> Intermediary': layer_Intermediary_3,'<img src="legend/Lines_advanced_2.png" /> Lines_advanced': layer_Lines_advanced_2,'<img src="legend/Lines_basic_1.png" /> Lines_basic': layer_Lines_basic_1,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Birth_4.png" /> Birth': layer_Birth_4,'<img src="legend/Death_5.png" /> Death': layer_Death_5,'<img src="legend/Intermediary_3.png" /> Intermediary': layer_Intermediary_3,'<img src="legend/Lines_basic_1.png" /> Birth and death locations': layer_Lines_basic_1,'<img src="legend/Lines_advanced_2.png" /> All locations': layer_Lines_advanced_2,},{collapsed:false}).addTo(map);
         setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
