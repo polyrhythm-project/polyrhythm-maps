@@ -35,7 +35,6 @@
         <script src="js/tailDT.js"></script>
 <script src="js/nouislider.min.js"></script>
 <script src="js/wNumb.js"></script>
-        <script src="data/Lines_basic_1.js"></script>
         <script src="data/Lines_advanced_2.js"></script>
         <script src="data/Intermediary_3.js"></script>
         <script src="data/Birth_4.js"></script>
@@ -63,90 +62,6 @@
         });
         layer_EsriWorldTopoMap_0;
         map.addLayer(layer_EsriWorldTopoMap_0);
-        function pop_Lines_basic_1(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Places'] !== null ? autolinker.link(feature.properties['Places'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Order'] !== null ? autolinker.link(feature.properties['Order'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Map option'] !== null ? autolinker.link(feature.properties['Map option'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Composer'] !== null ? autolinker.link(feature.properties['Composer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Nationalit'] !== null ? autolinker.link(feature.properties['Nationalit'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Date'] !== null ? autolinker.link(feature.properties['Date'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Country'] !== null ? autolinker.link(feature.properties['Country'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['City'] !== null ? autolinker.link(feature.properties['City'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Comment'] !== null ? autolinker.link(feature.properties['Comment'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Coordinate'] !== null ? autolinker.link(feature.properties['Coordinate'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Corpus Wor'] !== null ? autolinker.link(feature.properties['Corpus Wor'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Corpus Exa'] !== null ? autolinker.link(feature.properties['Corpus Exa'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Additional'] !== null ? autolinker.link(feature.properties['Additional'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Wikipedia'] !== null ? autolinker.link(feature.properties['Wikipedia'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Grove'] !== null ? autolinker.link(feature.properties['Grove'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_Lines_basic_1_0() {
-            return {
-                pane: 'pane_Lines_basic_1',
-                opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
-                fillOpacity: 0,
-                interactive: false,
-            }
-        }
-        map.createPane('pane_Lines_basic_1');
-        map.getPane('pane_Lines_basic_1').style.zIndex = 401;
-        map.getPane('pane_Lines_basic_1').style['mix-blend-mode'] = 'normal';
-        var layer_Lines_basic_1 = new L.geoJson(json_Lines_basic_1, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_Lines_basic_1',
-            layerName: 'layer_Lines_basic_1',
-            pane: 'pane_Lines_basic_1',
-            onEachFeature: pop_Lines_basic_1,
-            style: style_Lines_basic_1_0,
-        });
-        bounds_group.addLayer(layer_Lines_basic_1);
-        map.addLayer(layer_Lines_basic_1);
         function pop_Lines_advanced_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -424,7 +339,7 @@
         bounds_group.addLayer(layer_Death_5);
         map.addLayer(layer_Death_5);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Birth_4.png" /> Birth': layer_Birth_4,'<img src="legend/Death_5.png" /> Death': layer_Death_5,'<img src="legend/Intermediary_3.png" /> Intermediary': layer_Intermediary_3,'<img src="legend/Lines_basic_1.png" /> Birth and death locations': layer_Lines_basic_1,'<img src="legend/Lines_advanced_2.png" /> All locations': layer_Lines_advanced_2,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Birth_4.png" /> Birth': layer_Birth_4,'<img src="legend/Death_5.png" /> Death': layer_Death_5,'<img src="legend/Intermediary_3.png" /> Intermediary': layer_Intermediary_3,'<img src="legend/Lines_advanced_2.png" /> Connecting lines': layer_Lines_advanced_2,},{collapsed:false}).addTo(map);
         setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
