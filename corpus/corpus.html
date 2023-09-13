@@ -24,6 +24,13 @@
     />
     <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
 
+    <!-- Add Leaflet EasyButton sources -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
     <!-- basemap libraries -->
 
     <script
@@ -45,10 +52,10 @@
 
       //New tile layer
       L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
         {
           attribution:
-          'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
+            "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012",
           subdomains: "abcd",
           minZoom: 0,
           maxZoom: 20,
@@ -60,31 +67,53 @@
       //L.geoJSON(corpusdata).addTo(map);
 
       var markers = L.markerClusterGroup();
-   
 
-      L.geoJSON(corpusdata,{
-        onEachFeature: function(feature,layer){
-          var popupContent="<b>Composer: </b>"+feature.properties.composer_s_name+
-          "<br><b>Work: </b>"+feature.properties.work_title+
-          "<br><b>Genre: </b>"+feature.properties.genre+
-          "<br><b>Sub-Genre: </b>"+feature.properties.sub_genre+
-          "<br><b>Composition Year: </b>"+feature.properties.composition_year+
-          "<br><b>Publication Year: </b>"+feature.properties.first_publication_year+
-          "<br><b>Premiere Date: </b>"+feature.properties.premiere_date+
-          "<br><b>Premiere Location: </b>"+feature.properties.venue_or_city+
-          "<br><b>Ensemble: </b>"+feature.properties.ensemble+
-          "<br><b>Conductor: </b>"+feature.properties.conductor+
-          "<br><b>Soloist(s): </b>"+feature.properties.soloists+
-          "<br><b>Corpus Example(s): </b>"+feature.properties.example_no_2;
-
+      L.geoJSON(corpusdata, {
+        onEachFeature: function (feature, layer) {
+          var popupContent =
+            "<b>Composer: </b>" +
+            feature.properties.composer_s_name +
+            "<br><b>Work: </b>" +
+            feature.properties.work_title +
+            "<br><b>Genre: </b>" +
+            feature.properties.genre +
+            "<br><b>Sub-Genre: </b>" +
+            feature.properties.sub_genre +
+            "<br><b>Composition Year: </b>" +
+            feature.properties.composition_year +
+            "<br><b>Publication Year: </b>" +
+            feature.properties.first_publication_year +
+            "<br><b>Premiere Date: </b>" +
+            feature.properties.premiere_date +
+            "<br><b>Premiere Location: </b>" +
+            feature.properties.venue_or_city +
+            "<br><b>Ensemble: </b>" +
+            feature.properties.ensemble +
+            "<br><b>Conductor: </b>" +
+            feature.properties.conductor +
+            "<br><b>Soloist(s): </b>" +
+            feature.properties.soloists +
+            "<br><b>Corpus Example(s): </b>" +
+            feature.properties.example_no_2;
 
           layer.bindPopup(popupContent);
-
-        }
+        },
       }).addTo(markers);
       markers.addTo(map);
+    </script>
+    <script>
+      var customPopupContent =
+        '<h3>About this map</h3><p>This is a map showing the location of where works first premiered. Zoom in and click on a location to view information about each one.</p><hr><h4>Polyrhythm Maps</h4><p>Information about the project can be found here <a href="https://maps.polyrhythm.humdrum.org/">maps.polyrhythm.humdrum.org</a>.</p>';
+      var helloPopup = L.popup({ className: "custom-popup" }).setContent(
+        customPopupContent
+      );
 
-      
+      L.easyButton(
+        '<img src="./information.ico" style="padding-top:6px;">',
+        function (btn, map) {
+          helloPopup.setLatLng(map.getCenter()).openOn(map);
+        }
+      ).addTo(map);
     </script>
   </body>
 </html>
