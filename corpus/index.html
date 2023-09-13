@@ -40,6 +40,39 @@
 
     <!-- geoJSON data -->
     <script src="corpus.js" charset="utf-8"></script>
+
+    <!-- custom popup styling for info box -->
+    <style>
+      #map .slider {
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        border-radius: 6px;
+        text-align: center;
+        padding: 10px 40px 35px 40px;
+        position: bottom left;
+      }
+
+      .custom-popup .leaflet-popup-content-wrapper {
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        border-radius: 6px !important;
+        color: #222;
+        font-size: 14px;
+        border-radius: 0px;
+      }
+      .custom-popup .leaflet-popup-content-wrapper a {
+        color: rgba(255, 255, 255, 0.1);
+      }
+
+      .custom-popup .leaflet-popup-tip {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+      .custom-popup .leaflet-popup-content-wrapper a {
+        color: rgb(0, 145, 255);
+      }
+    </style>
   </head>
 
   <body>
