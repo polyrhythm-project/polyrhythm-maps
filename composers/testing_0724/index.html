@@ -7,6 +7,7 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/composer.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/filter.css">
 <link rel="stylesheet" href="css/nouislider.min.css">
@@ -463,33 +464,33 @@
             var Composer_options_str = "<option value='' unselected></option>";
             sel_Composer.onchange = function(){filterFunc()};
             Composer_options_str  += '<option value="Bartók, Béla">Bartók, Béla</option>';
-            Composer_options_str  += '<option value="Berg, Alban (Maria Johannes)">Berg, Alban (Maria Johannes)</option>';
-            Composer_options_str  += '<option value="Britten, (Edward) Benjamin">Britten, (Edward) Benjamin</option>';
+            Composer_options_str  += '<option value="Berg, Alban (Maria Johannes)">Berg, Alban</option>';
+            Composer_options_str  += '<option value="Britten, (Edward) Benjamin">Britten, Benjamin</option>';
             Composer_options_str  += '<option value="Copland, Aaron">Copland, Aaron</option>';
-            Composer_options_str  += '<option value="Debussy, (Achille-)Claude">Debussy, (Achille-)Claude</option>';
-            Composer_options_str  += '<option value="Falla (y Matheu), Manuel de">Falla (y Matheu), Manuel de</option>';
+            Composer_options_str  += '<option value="Debussy, (Achille-)Claude">Debussy, Claude</option>';
+            Composer_options_str  += '<option value="Falla (y Matheu), Manuel de">Falla, Manuel de</option>';
             Composer_options_str  += '<option value="Gershwin, George">Gershwin, George</option>';
             Composer_options_str  += '<option value="Hindemith, Paul">Hindemith, Paul</option>';
             Composer_options_str  += '<option value="Honegger, Arthur">Honegger, Arthur</option>';
             Composer_options_str  += '<option value="Ives, Charles">Ives, Charles</option>';
-            Composer_options_str  += '<option value="Janáček, Leoš [Leo Eugen]">Janáček, Leoš [Leo Eugen]</option>';
+            Composer_options_str  += '<option value="Janáček, Leoš [Leo Eugen]">Janáček, Leoš</option>';
             Composer_options_str  += '<option value="Martin, Frank">Martin, Frank</option>';
-            Composer_options_str  += '<option value="Martinů, Bohuslav (Jan)">Martinů, Bohuslav (Jan)</option>';
-            Composer_options_str  += '<option value="Messiaen, Olivier (Eugène Prosper Charles)">Messiaen, Olivier (Eugène Prosper Charles)</option>';
-            Composer_options_str  += '<option value="Prokofiev, Sergey (Sergeyevich)">Prokofiev, Sergey (Sergeyevich)</option>';
-            Composer_options_str  += '<option value="Ravel, (Joseph) Maurice">Ravel, (Joseph) Maurice</option>';
-            Composer_options_str  += '<option value="Schoenberg [Schönberg], Arnold (Franz Walter)">Schoenberg [Schönberg], Arnold (Franz Walter)</option>';
-            Composer_options_str  += '<option value="Stravinsky, Igor (Fyodorovich)">Stravinsky, Igor (Fyodorovich)</option>';
-            Composer_options_str  += '<option value="Varèse, Edgard [Edgar] (Victor Achille Charles)">Varèse, Edgard [Edgar] (Victor Achille Charles)</option>';
-            Composer_options_str  += '<option value="Webern, Anton (Friedrich Wilhelm von)">Webern, Anton (Friedrich Wilhelm von)</option>';
+            Composer_options_str  += '<option value="Martinů, Bohuslav (Jan)">Martinů, Bohuslav </option>';
+            Composer_options_str  += '<option value="Messiaen, Olivier (Eugène Prosper Charles)">Messiaen, Olivier</option>';
+            Composer_options_str  += '<option value="Prokofiev, Sergey (Sergeyevich)">Prokofiev, Sergey</option>';
+            Composer_options_str  += '<option value="Ravel, (Joseph) Maurice">Ravel, Maurice</option>';
+            Composer_options_str  += '<option value="Schoenberg [Schönberg], Arnold (Franz Walter)">Schoenberg, Arnold</option>';
+            Composer_options_str  += '<option value="Stravinsky, Igor (Fyodorovich)">Stravinsky, Igor</option>';
+            Composer_options_str  += '<option value="Varèse, Edgard [Edgar] (Victor Achille Charles)">Varèse, Edgard</option>';
+            Composer_options_str  += '<option value="Webern, Anton (Friedrich Wilhelm von)">Webern, Anton</option>';
             sel_Composer.innerHTML = Composer_options_str;
             div_Composer.appendChild(sel_Composer);
-            var lab_Composer = document.createElement('div');
-            lab_Composer.innerHTML = 'Composer';
-            lab_Composer.className = 'filterlabel';
-            div_Composer.appendChild(lab_Composer);
+            // var lab_Composer = document.createElement('div');
+            // lab_Composer.innerHTML = 'Composer';
+            // lab_Composer.className = 'filterlabel';
+            // div_Composer.appendChild(lab_Composer);
             var reset_Composer = document.createElement('div');
-            reset_Composer.innerHTML = '<span style="border:2px #99ffcc solid;padding-left:2px;padding-right:2px;background-color: #ccffe6"><font color="black">Clear filter</font></span>';
+            reset_Composer.innerHTML = '<span id="reset_button">reset</span>';
             reset_Composer.className = 'filterlabel';
             reset_Composer.onclick = function() {
                 var options = document.getElementById("sel_Composer").options;

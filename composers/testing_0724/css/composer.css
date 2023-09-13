@@ -1,0 +1,42 @@
+
+body, select#sel_Composer {
+	background-color: beige;
+}
+
+
+select#sel_Composer {
+	font-size: 120%;
+	font-family: Verdana;
+	height: 400px;
+	border: 0px;
+	width: 175px;
+	margin-left: 20px;
+}
+
+select:focus {
+	outline: 0;
+}
+
+#reset_button {
+	display: inline-block;
+	margin-left: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-top: -30px;
+	border-radius: 5px;
+	font-size: 150%;
+	padding-left: 8px;
+	padding-right:8px;
+	padding-top: 3px;
+	padding-bottom:3px;
+	/* background-color: #ccffe6; */
+	background-color: darkred;
+	color: white;
+	cursor: pointer;
+}
+
+#reset_button:hover {
+	background-color: limegreen;
+}
+
+
