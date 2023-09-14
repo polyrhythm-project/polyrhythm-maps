@@ -1,6 +1,6 @@
 
 
 * [timeline](timeline)
-* [corpus](corpus/corpus.html)
+* [corpus](corpus)
 * [composers](composers)
 
