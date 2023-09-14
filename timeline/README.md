@@ -23,11 +23,76 @@ This map is meant to show the locations of where certain works premiered over ti
 
 
 # Solutions Documentation 
-[timeline-boilerplate.html](./timeline-boilerplate.html) provides a basemap for modifying according to the workflows below. 
 
-See [index.html](./index.html) for map with successful timeline slider built referencing code and documentation from [http://dwilhelm89.github.io/LeafletSlider/](http://dwilhelm89.github.io/LeafletSlider/)
+<details>
+<summary> Click to view initial boilerplate code for creating the timeline webpage. This provides a basemape for modifying accordings to the workflows below.</summary>
 
-1. Convert csv data to geoJSON - drag into https://geojson.io/ to visualize and "Save" in geoJSON format 
+```html
+<html>
+  <head>
+    <title>Boilerplate</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Source for your Leaflet JavaScript and CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+
+    <!-- Add data source wrapped as a variable -->
+
+    <!-- Add Slider Control source-->
+
+    <!-- Add jquery CSS source-->
+
+    <!-- Add jquery ui Javascript sources-->
+  </head>
+
+  <body>
+    <!-- Map's HTML container -->
+    <div id="map" style="height: 100%"></div>
+
+    <script>
+      // Initializes map; sets the initial view location and zoom level
+      var map = L.map("map").setView([42, -35], 2.5);
+
+     
+      //New tile layer
+      L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+          {
+          attribution:
+          'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
+          subdomains: "abcd",
+          minZoom: 0,
+          maxZoom: 20,
+          ext: "png",
+          }
+      ).addTo(map);
+      
+    </script>
+  </body>
+</html>
+```
+
+</details>
+
+
+See [index.html](./index.html) for final map with timeline
+slider built by referencing code and documentation at
+[http://dwilhelm89.github.io/LeafletSlider/](http://dwilhelm89.github.io/LeafletSlider/)
+
+1. Convert CSV data to geoJSON &mdash; drag into https://geojson.io to visualize and "Save" in geoJSON format 
 2. Add corpus.geojson to appropriate repo folder. Then wrap the data as a variable (simply add `var corpusdata =` before the data on the first line). This will save the file in javascript format. It should now appear as `corpus.js`
 3. Open a boilerplate basemap html document. In the body of your html document and within the `<script>` element, your add data to the map as a variable called `testlayer`
 
