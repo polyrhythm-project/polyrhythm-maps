@@ -16,6 +16,8 @@ Principal Investigator: Ève Poudrier
 
 Technical Director: Craig Sapp
 
+Graduate student researchers (polyrhythm project): Jason Lee, Bryan Bell
+
 GIS Librarian: Evan Thornberry
 
 Graduate Consultants: Xilin Wan, Lily Demet
