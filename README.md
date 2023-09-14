@@ -8,7 +8,7 @@ Each subdirectory in this repository contains the files and documentation for ea
 * [Corpus](https://github.com/polyrhythm-project/polyrhythm-maps/blob/master/corpus/README.md)
 * [Timeline](https://github.com/polyrhythm-project/polyrhythm-maps/blob/master/timeline/README.md)
 
-Landing page for the project: [https://maps.polyrhythm.humdrum.org/](https://maps.polyrhythm.humdrum.org/)
+Landing page for the project: [https://maps.polyrhythm.humdrum.org](https://maps.polyrhythm.humdrum.org)
 
 **Contributors to the project:**
 
@@ -16,7 +16,7 @@ Principal Investigator: Ève Poudrier
 
 Technical Director: Craig Sapp
 
-Graduate student researchers (polyrhythm project): Jason Lee, Bryan Bell
+Graduate student researchers (Polyrhythm Project): Jason Lee, Bryan Bell
 
 GIS Librarian: Evan Thornberry
 
