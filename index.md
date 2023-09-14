@@ -1,6 +1,6 @@
 
 
-* [timeline](timeline/index.html)
+* [timeline](timeline)
 * [corpus](corpus/corpus.html)
-* [composers](composers/composers-map/composers-map.html)
+* [composers](composers/composers-map)
 
