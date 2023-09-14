@@ -25,7 +25,7 @@ This map is meant to show the locations of where certain works premiered over ti
 # Solutions Documentation 
 [timeline-boilerplate.html](./timeline-boilerplate.html) provides a basemap for modifying according to the workflows below. 
 
-See [timeline-1.html](./timeline-1.html) for map with sucessfull timeline slider built referencing code and documentation from [http://dwilhelm89.github.io/LeafletSlider/](http://dwilhelm89.github.io/LeafletSlider/)
+See [index.html](./index.html) for map with successful timeline slider built referencing code and documentation from [http://dwilhelm89.github.io/LeafletSlider/](http://dwilhelm89.github.io/LeafletSlider/)
 
 1. Convert csv data to geoJSON - drag into https://geojson.io/ to visualize and "Save" in geoJSON format 
 2. Add corpus.geojson to appropriate repo folder. Then wrap the data as a variable (simply add `var corpusdata =` before the data on the first line). This will save the file in javascript format. It should now appear as `corpus.js`
