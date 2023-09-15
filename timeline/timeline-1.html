@@ -46,7 +46,7 @@
     <!-- Slider and Static Graph Container -->
     <style>
       #map .slider {
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.6);
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
         border-radius: 6px;
         text-align: center;
@@ -202,10 +202,12 @@
 
     <script>
       var customPopupContent =
-        '<h3>About this map</h3><p>This is a timeline map showing the location of where works first premiered. Use the timeline slider in the bottom right corner to select works during that premiered during a specific time range.</p><hr><h4>Polyrhythm Maps</h4><p>Information about the project can be found here <a href="https://maps.polyrhythm.humdrum.org/">maps.polyrhythm.humdrum.org</a>.</p>';
-      var helloPopup = L.popup({ className: "custom-popup" }).setContent(
-        customPopupContent
-      );
+        '<h3>About this map</h3><p>This map displays the corpus source works by premiere location and year. Blue pins represent a single work. If the premiere venue is known, the blue pin marks the premiere venue. If the premiere venue is unknown, the blue pin is placed within the city limits. If the premiere city is unknown, the blue pin is placed within the capital city limits of the premiere country.</p><p>The default view includes all premiere locations for the corpus. Select a time range with the slider in the bottom left of the map. Click on the blue markers to view more information about the work premiere. For cities that featured a larges number of works, zoom in to view individual blue markers.</p><hr><h4>Polyrhythm Maps</h4><p>If you want to search the work premieres, see: [to be designed].</p> <p>If you want to learn more about this project, see: <a href="https://polyrhythm.humdrum.org/about/"> polyrhythm.humdrum.org/about</a>.</p><p><b>Note that there are [number] works for which the premiere year is unknown, and there are [number] works that are not featured because the premiere location is unknown.</b></p>';
+      var helloPopup = L.popup({
+        maxHeight: 300,
+        offset: [0, 200],
+        className: "custom-popup",
+      }).setContent(customPopupContent);
 
       L.easyButton(
         '<img src="./information.ico" style="padding-top:6px;">',
