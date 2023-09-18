@@ -1,509 +1,826 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/composer.css">
-        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/filter.css">
-<link rel="stylesheet" href="css/nouislider.min.css">
-        <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
-        </style>
-        <title></title>
-    </head>
-    <body>
-        <div id="map">
-        </div>
-        <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script>
-        <script src="js/leaflet.rotatedMarker.js"></script>
-        <script src="js/leaflet.pattern.js"></script>
-        <script src="js/leaflet-hash.js"></script>
-        <script src="js/Autolinker.min.js"></script>
-        <script src="js/rbush.min.js"></script>
-        <script src="js/labelgun.min.js"></script>
-        <script src="js/labels.js"></script>
-        <script src="js/tailDT.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/wNumb.js"></script>
-        <script src="data/Lines_advanced_2.js"></script>
-        <script src="data/Intermediary_3.js"></script>
-        <script src="data/Birth_4.js"></script>
-        <script src="data/Death_5.js"></script>
-        <script>
-        let map = L.map('map', {
-            zoomControl:true, maxZoom:13, minZoom:3
-        }).fitBounds([[34.79437316054066,-10.077468091415806],[60.70920173048789,30.882358176084114]]);
-        let hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-        let autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        let bounds_group = new L.featureGroup([]);
-        function setBounds() {
-        }
-        map.createPane('pane_EsriWorldTopoMap_0');
-        map.getPane('pane_EsriWorldTopoMap_0').style.zIndex = 400;
-        let layer_EsriWorldTopoMap_0 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-            pane: 'pane_EsriWorldTopoMap_0',
-            opacity: 1.0,
-            attribution: '',
-            minZoom: 1,
-            maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 18
-        });
-        layer_EsriWorldTopoMap_0;
-        map.addLayer(layer_EsriWorldTopoMap_0);
-        function pop_Lines_advanced_2(feature, layer) {
-            let popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Places'] !== null ? autolinker.link(feature.properties['Places'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Order'] !== null ? autolinker.link(feature.properties['Order'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Map option'] !== null ? autolinker.link(feature.properties['Map option'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Composer'] !== null ? autolinker.link(feature.properties['Composer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Nationalit'] !== null ? autolinker.link(feature.properties['Nationalit'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Date'] !== null ? autolinker.link(feature.properties['Date'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Country'] !== null ? autolinker.link(feature.properties['Country'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['City'] !== null ? autolinker.link(feature.properties['City'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Comment'] !== null ? autolinker.link(feature.properties['Comment'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Coordinate'] !== null ? autolinker.link(feature.properties['Coordinate'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Corpus Wor'] !== null ? autolinker.link(feature.properties['Corpus Wor'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Corpus Exa'] !== null ? autolinker.link(feature.properties['Corpus Exa'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Additional'] !== null ? autolinker.link(feature.properties['Additional'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Wikipedia'] !== null ? autolinker.link(feature.properties['Wikipedia'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Grove'] !== null ? autolinker.link(feature.properties['Grove'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/composer.css" />
+    <link rel="stylesheet" href="css/qgis2web.css" />
+    <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/filter.css" />
+    <link rel="stylesheet" href="css/nouislider.min.css" />
+    <!-- Add Leaflet EasyButton sources -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"
+    />
 
-        function style_Lines_advanced_2_0() {
-            return {
-                pane: 'pane_Lines_advanced_2',
-                opacity: 1,
-                color: 'rgba(232,161,12,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.5,
-                fillOpacity: 0,
-                interactive: false,
-            }
-        }
-        map.createPane('pane_Lines_advanced_2');
-        map.getPane('pane_Lines_advanced_2').style.zIndex = 402;
-        map.getPane('pane_Lines_advanced_2').style['mix-blend-mode'] = 'normal';
-        let layer_Lines_advanced_2 = new L.geoJson(json_Lines_advanced_2, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_Lines_advanced_2',
-            layerName: 'layer_Lines_advanced_2',
-            pane: 'pane_Lines_advanced_2',
-            onEachFeature: pop_Lines_advanced_2,
-            style: style_Lines_advanced_2_0,
-        });
-        bounds_group.addLayer(layer_Lines_advanced_2);
-        map.addLayer(layer_Lines_advanced_2);
-        function pop_Intermediary_3(feature, layer) {
-            let popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><h3>' + (feature.properties['Places'] !== null ? autolinker.link(feature.properties['Places'].toLocaleString()) : '') + '</h3></td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Composer</strong><br />' + (feature.properties['Composer'] !== null ? autolinker.link(feature.properties['Composer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Nationality</strong><br />' + (feature.properties['Nationality'] !== null ? autolinker.link(feature.properties['Nationality'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Date</strong><br />' + (feature.properties['Date'] !== null ? autolinker.link(feature.properties['Date'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Country</strong><br />' + (feature.properties['Country'] !== null ? autolinker.link(feature.properties['Country'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>City</strong><br />' + (feature.properties['City'] !== null ? autolinker.link(feature.properties['City'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Coordinates</strong><br />' + (feature.properties['Coordinates'] !== null ? autolinker.link(feature.properties['Coordinates'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Corpus Works</strong><br />' + (feature.properties['Corpus Works'] !== null ? autolinker.link(feature.properties['Corpus Works'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Corpus Examples</strong><br />' + (feature.properties['Corpus Examples'] !== null ? autolinker.link(feature.properties['Corpus Examples'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
+    <style>
+      html,
+      body,
+      #map {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
 
-        function style_Intermediary_3_0() {
-            return {
-                pane: 'pane_Intermediary_3',
-                radius: 4.0,
-                stroke: false,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(117,112,179,1.0)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_Intermediary_3');
-        map.getPane('pane_Intermediary_3').style.zIndex = 403;
-        map.getPane('pane_Intermediary_3').style['mix-blend-mode'] = 'normal';
-        let layer_Intermediary_3 = new L.geoJson(json_Intermediary_3, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Intermediary_3',
-            layerName: 'layer_Intermediary_3',
-            pane: 'pane_Intermediary_3',
-            onEachFeature: pop_Intermediary_3,
-            pointToLayer: function (feature, latlng) {
-                let context = {
-                    feature: feature,
-                    letiables: {}
-                };
-                return L.circleMarker(latlng, style_Intermediary_3_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_Intermediary_3);
-        map.addLayer(layer_Intermediary_3);
-        function pop_Birth_4(feature, layer) {
-            let popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><h3>' + (feature.properties['Places'] !== null ? autolinker.link(feature.properties['Places'].toLocaleString()) : '') + '</h3></td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Composer</strong><br />' + (feature.properties['Composer'] !== null ? autolinker.link(feature.properties['Composer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Nationality</strong><br />' + (feature.properties['Nationality'] !== null ? autolinker.link(feature.properties['Nationality'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Date</strong><br />' + (feature.properties['Date'] !== null ? autolinker.link(feature.properties['Date'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Country</strong><br />' + (feature.properties['Country'] !== null ? autolinker.link(feature.properties['Country'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>City</strong><br />' + (feature.properties['City'] !== null ? autolinker.link(feature.properties['City'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Coordinates</strong><br />' + (feature.properties['Coordinates'] !== null ? autolinker.link(feature.properties['Coordinates'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Corpus Works</strong><br />' + (feature.properties['Corpus Works'] !== null ? autolinker.link(feature.properties['Corpus Works'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Corpus Examples</strong><br />' + (feature.properties['Corpus Examples'] !== null ? autolinker.link(feature.properties['Corpus Examples'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
+    <!-- Slider and Static Graph Container -->
+    <style>
+      #map .slider {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        border-radius: 6px;
+        text-align: center;
+        padding: 10px 40px 35px 40px;
+        position: bottom left;
+      }
 
-        function style_Birth_4_0() {
-            return {
-                pane: 'pane_Birth_4',
-                radius: 4.0,
-                stroke: false,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(27,158,119,1.0)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_Birth_4');
-        map.getPane('pane_Birth_4').style.zIndex = 404;
-        map.getPane('pane_Birth_4').style['mix-blend-mode'] = 'normal';
-        let layer_Birth_4 = new L.geoJson(json_Birth_4, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Birth_4',
-            layerName: 'layer_Birth_4',
-            pane: 'pane_Birth_4',
-            onEachFeature: pop_Birth_4,
-            pointToLayer: function (feature, latlng) {
-                let context = {
-                    feature: feature,
-                    letiables: {}
-                };
-                return L.circleMarker(latlng, style_Birth_4_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_Birth_4);
-        map.addLayer(layer_Birth_4);
-        function pop_Death_5(feature, layer) {
-            let popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><h3>' + (feature.properties['Places'] !== null ? autolinker.link(feature.properties['Places'].toLocaleString()) : '') + '</h3></td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Composer</strong><br />' + (feature.properties['Composer'] !== null ? autolinker.link(feature.properties['Composer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Nationality</strong><br />' + (feature.properties['Nationality'] !== null ? autolinker.link(feature.properties['Nationality'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Date</strong><br />' + (feature.properties['Date'] !== null ? autolinker.link(feature.properties['Date'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Country</strong><br />' + (feature.properties['Country'] !== null ? autolinker.link(feature.properties['Country'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>City</strong><br />' + (feature.properties['City'] !== null ? autolinker.link(feature.properties['City'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Coordinates</strong><br />' + (feature.properties['Coordinates'] !== null ? autolinker.link(feature.properties['Coordinates'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Corpus Works</strong><br />' + (feature.properties['Corpus Works'] !== null ? autolinker.link(feature.properties['Corpus Works'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Corpus Examples</strong><br />' + (feature.properties['Corpus Examples'] !== null ? autolinker.link(feature.properties['Corpus Examples'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
+      .custom-popup .leaflet-popup-content-wrapper {
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        border-radius: 6px !important;
+        color: #222;
+        font-size: 14px;
+        border-radius: 0px;
+      }
+      .custom-popup .leaflet-popup-content-wrapper a {
+        color: rgba(255, 255, 255, 0.1);
+      }
 
-        function style_Death_5_0() {
-            return {
-                pane: 'pane_Death_5',
-                radius: 4.0,
-                stroke: false,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(217,95,2,1.0)',
-                interactive: true,
-            }
+      .custom-popup .leaflet-popup-tip {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+      .custom-popup .leaflet-popup-content-wrapper a {
+        color: rgb(0, 145, 255);
+      }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="js/tailDT.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/wNumb.js"></script>
+    <script src="data/Lines_advanced_2.js"></script>
+    <script src="data/Intermediary_3.js"></script>
+    <script src="data/Birth_4.js"></script>
+    <script src="data/Death_5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <script>
+      let map = L.map("map", {
+        zoomControl: true,
+        maxZoom: 13,
+        minZoom: 3,
+      }).fitBounds([
+        [34.79437316054066, -10.077468091415806],
+        [60.70920173048789, 30.882358176084114],
+      ]);
+
+      let hash = new L.Hash(map);
+      map.attributionControl.setPrefix(
+        '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>'
+      );
+      let autolinker = new Autolinker({
+        truncate: { length: 30, location: "smart" },
+      });
+      let bounds_group = new L.featureGroup([]);
+      function setBounds() {}
+      map.createPane("pane_EsriWorldTopoMap_0");
+      map.getPane("pane_EsriWorldTopoMap_0").style.zIndex = 400;
+      let layer_EsriWorldTopoMap_0 = L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+        {
+          pane: "pane_EsriWorldTopoMap_0",
+          opacity: 1.0,
+          attribution: "",
+          minZoom: 1,
+          maxZoom: 28,
+          minNativeZoom: 0,
+          maxNativeZoom: 18,
         }
-        map.createPane('pane_Death_5');
-        map.getPane('pane_Death_5').style.zIndex = 405;
-        map.getPane('pane_Death_5').style['mix-blend-mode'] = 'normal';
-        let layer_Death_5 = new L.geoJson(json_Death_5, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Death_5',
-            layerName: 'layer_Death_5',
-            pane: 'pane_Death_5',
-            onEachFeature: pop_Death_5,
-            pointToLayer: function (feature, latlng) {
-                let context = {
-                    feature: feature,
-                    letiables: {}
-                };
-                return L.circleMarker(latlng, style_Death_5_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_Death_5);
-        map.addLayer(layer_Death_5);
-        let baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Birth_4.png" /> Birth': layer_Birth_4,'<img src="legend/Death_5.png" /> Death': layer_Death_5,'<img src="legend/Intermediary_3.png" /> Intermediary': layer_Intermediary_3,'<img src="legend/Lines_advanced_2.png" /> Connecting lines': layer_Lines_advanced_2,},{collapsed:false}).addTo(map);
-        setBounds();
-        let mapDiv = document.getElementById('map');
-        let row = document.createElement('div');
-        row.className="row";
-        row.id="all";
-        row.style.height = "100%";
-        let col1 = document.createElement('div');
-        col1.className="col9";
-        col1.id = "mapWindow";
-        col1.style.height = "99%";
-        col1.style.width = "80%";
-        col1.style.display = "inline-block";
-        let col2 = document.createElement('div');
-        col2.className="col3";
-        col2.id = "menu";
-        col2.style.display = "inline-block";
-        mapDiv.parentNode.insertBefore(row, mapDiv);
-        document.getElementById("all").appendChild(col1);
-        document.getElementById("all").appendChild(col2);
-        col1.appendChild(mapDiv)
-        let Filters = {"Composer": "str"};
-        function filterFunc() {
-          map.eachLayer(function(lyr){
-          if ("options" in lyr && "dataVar" in lyr["options"]){
+      );
+      layer_EsriWorldTopoMap_0;
+      map.addLayer(layer_EsriWorldTopoMap_0);
+      function pop_Lines_advanced_2(feature, layer) {
+        let popupContent =
+          '<table>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Places"] !== null
+            ? autolinker.link(feature.properties["Places"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Order"] !== null
+            ? autolinker.link(feature.properties["Order"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Map option"] !== null
+            ? autolinker.link(feature.properties["Map option"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Composer"] !== null
+            ? autolinker.link(feature.properties["Composer"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Nationalit"] !== null
+            ? autolinker.link(feature.properties["Nationalit"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Date"] !== null
+            ? autolinker.link(feature.properties["Date"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Country"] !== null
+            ? autolinker.link(feature.properties["Country"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["City"] !== null
+            ? autolinker.link(feature.properties["City"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Latitude"] !== null
+            ? autolinker.link(feature.properties["Latitude"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Longitude"] !== null
+            ? autolinker.link(feature.properties["Longitude"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Comment"] !== null
+            ? autolinker.link(feature.properties["Comment"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Coordinate"] !== null
+            ? autolinker.link(feature.properties["Coordinate"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Corpus Wor"] !== null
+            ? autolinker.link(feature.properties["Corpus Wor"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Corpus Exa"] !== null
+            ? autolinker.link(feature.properties["Corpus Exa"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Additional"] !== null
+            ? autolinker.link(feature.properties["Additional"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Wikipedia"] !== null
+            ? autolinker.link(feature.properties["Wikipedia"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' +
+          (feature.properties["Grove"] !== null
+            ? autolinker.link(feature.properties["Grove"].toLocaleString())
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_Lines_advanced_2_0() {
+        return {
+          pane: "pane_Lines_advanced_2",
+          opacity: 1,
+          color: "rgba(232,161,12,1.0)",
+          dashArray: "",
+          lineCap: "square",
+          lineJoin: "bevel",
+          weight: 1.5,
+          fillOpacity: 0,
+          interactive: false,
+        };
+      }
+      map.createPane("pane_Lines_advanced_2");
+      map.getPane("pane_Lines_advanced_2").style.zIndex = 402;
+      map.getPane("pane_Lines_advanced_2").style["mix-blend-mode"] = "normal";
+      let layer_Lines_advanced_2 = new L.geoJson(json_Lines_advanced_2, {
+        attribution: "",
+        interactive: false,
+        dataVar: "json_Lines_advanced_2",
+        layerName: "layer_Lines_advanced_2",
+        pane: "pane_Lines_advanced_2",
+        onEachFeature: pop_Lines_advanced_2,
+        style: style_Lines_advanced_2_0,
+      });
+      bounds_group.addLayer(layer_Lines_advanced_2);
+      map.addLayer(layer_Lines_advanced_2);
+      function pop_Intermediary_3(feature, layer) {
+        let popupContent =
+          '<table>\
+                    <tr>\
+                        <td colspan="2"><h3>' +
+          (feature.properties["Places"] !== null
+            ? autolinker.link(feature.properties["Places"].toLocaleString())
+            : "") +
+          '</h3></td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Composer</strong><br />' +
+          (feature.properties["Composer"] !== null
+            ? autolinker.link(feature.properties["Composer"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nationality</strong><br />' +
+          (feature.properties["Nationality"] !== null
+            ? autolinker.link(
+                feature.properties["Nationality"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Date</strong><br />' +
+          (feature.properties["Date"] !== null
+            ? autolinker.link(feature.properties["Date"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Country</strong><br />' +
+          (feature.properties["Country"] !== null
+            ? autolinker.link(feature.properties["Country"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>City</strong><br />' +
+          (feature.properties["City"] !== null
+            ? autolinker.link(feature.properties["City"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Coordinates</strong><br />' +
+          (feature.properties["Coordinates"] !== null
+            ? autolinker.link(
+                feature.properties["Coordinates"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Corpus Works</strong><br />' +
+          (feature.properties["Corpus Works"] !== null
+            ? autolinker.link(
+                feature.properties["Corpus Works"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Corpus Examples</strong><br />' +
+          (feature.properties["Corpus Examples"] !== null
+            ? autolinker.link(
+                feature.properties["Corpus Examples"].toLocaleString()
+              )
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_Intermediary_3_0() {
+        return {
+          pane: "pane_Intermediary_3",
+          radius: 4.0,
+          stroke: false,
+          fill: true,
+          fillOpacity: 1,
+          fillColor: "rgba(117,112,179,1.0)",
+          interactive: true,
+        };
+      }
+      map.createPane("pane_Intermediary_3");
+      map.getPane("pane_Intermediary_3").style.zIndex = 403;
+      map.getPane("pane_Intermediary_3").style["mix-blend-mode"] = "normal";
+      let layer_Intermediary_3 = new L.geoJson(json_Intermediary_3, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_Intermediary_3",
+        layerName: "layer_Intermediary_3",
+        pane: "pane_Intermediary_3",
+        onEachFeature: pop_Intermediary_3,
+        pointToLayer: function (feature, latlng) {
+          let context = {
+            feature: feature,
+            letiables: {},
+          };
+          return L.circleMarker(latlng, style_Intermediary_3_0(feature));
+        },
+      });
+      bounds_group.addLayer(layer_Intermediary_3);
+      map.addLayer(layer_Intermediary_3);
+      function pop_Birth_4(feature, layer) {
+        let popupContent =
+          '<table>\
+                    <tr>\
+                        <td colspan="2"><h3>' +
+          (feature.properties["Places"] !== null
+            ? autolinker.link(feature.properties["Places"].toLocaleString())
+            : "") +
+          '</h3></td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Composer</strong><br />' +
+          (feature.properties["Composer"] !== null
+            ? autolinker.link(feature.properties["Composer"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nationality</strong><br />' +
+          (feature.properties["Nationality"] !== null
+            ? autolinker.link(
+                feature.properties["Nationality"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Date</strong><br />' +
+          (feature.properties["Date"] !== null
+            ? autolinker.link(feature.properties["Date"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Country</strong><br />' +
+          (feature.properties["Country"] !== null
+            ? autolinker.link(feature.properties["Country"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>City</strong><br />' +
+          (feature.properties["City"] !== null
+            ? autolinker.link(feature.properties["City"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Coordinates</strong><br />' +
+          (feature.properties["Coordinates"] !== null
+            ? autolinker.link(
+                feature.properties["Coordinates"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Corpus Works</strong><br />' +
+          (feature.properties["Corpus Works"] !== null
+            ? autolinker.link(
+                feature.properties["Corpus Works"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Corpus Examples</strong><br />' +
+          (feature.properties["Corpus Examples"] !== null
+            ? autolinker.link(
+                feature.properties["Corpus Examples"].toLocaleString()
+              )
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_Birth_4_0() {
+        return {
+          pane: "pane_Birth_4",
+          radius: 4.0,
+          stroke: false,
+          fill: true,
+          fillOpacity: 1,
+          fillColor: "rgba(27,158,119,1.0)",
+          interactive: true,
+        };
+      }
+      map.createPane("pane_Birth_4");
+      map.getPane("pane_Birth_4").style.zIndex = 404;
+      map.getPane("pane_Birth_4").style["mix-blend-mode"] = "normal";
+      let layer_Birth_4 = new L.geoJson(json_Birth_4, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_Birth_4",
+        layerName: "layer_Birth_4",
+        pane: "pane_Birth_4",
+        onEachFeature: pop_Birth_4,
+        pointToLayer: function (feature, latlng) {
+          let context = {
+            feature: feature,
+            letiables: {},
+          };
+          return L.circleMarker(latlng, style_Birth_4_0(feature));
+        },
+      });
+      bounds_group.addLayer(layer_Birth_4);
+      map.addLayer(layer_Birth_4);
+      function pop_Death_5(feature, layer) {
+        let popupContent =
+          '<table>\
+                    <tr>\
+                        <td colspan="2"><h3>' +
+          (feature.properties["Places"] !== null
+            ? autolinker.link(feature.properties["Places"].toLocaleString())
+            : "") +
+          '</h3></td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Composer</strong><br />' +
+          (feature.properties["Composer"] !== null
+            ? autolinker.link(feature.properties["Composer"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nationality</strong><br />' +
+          (feature.properties["Nationality"] !== null
+            ? autolinker.link(
+                feature.properties["Nationality"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Date</strong><br />' +
+          (feature.properties["Date"] !== null
+            ? autolinker.link(feature.properties["Date"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Country</strong><br />' +
+          (feature.properties["Country"] !== null
+            ? autolinker.link(feature.properties["Country"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>City</strong><br />' +
+          (feature.properties["City"] !== null
+            ? autolinker.link(feature.properties["City"].toLocaleString())
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Coordinates</strong><br />' +
+          (feature.properties["Coordinates"] !== null
+            ? autolinker.link(
+                feature.properties["Coordinates"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Corpus Works</strong><br />' +
+          (feature.properties["Corpus Works"] !== null
+            ? autolinker.link(
+                feature.properties["Corpus Works"].toLocaleString()
+              )
+            : "") +
+          '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Corpus Examples</strong><br />' +
+          (feature.properties["Corpus Examples"] !== null
+            ? autolinker.link(
+                feature.properties["Corpus Examples"].toLocaleString()
+              )
+            : "") +
+          "</td>\
+                    </tr>\
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
+
+      function style_Death_5_0() {
+        return {
+          pane: "pane_Death_5",
+          radius: 4.0,
+          stroke: false,
+          fill: true,
+          fillOpacity: 1,
+          fillColor: "rgba(217,95,2,1.0)",
+          interactive: true,
+        };
+      }
+      map.createPane("pane_Death_5");
+      map.getPane("pane_Death_5").style.zIndex = 405;
+      map.getPane("pane_Death_5").style["mix-blend-mode"] = "normal";
+      let layer_Death_5 = new L.geoJson(json_Death_5, {
+        attribution: "",
+        interactive: true,
+        dataVar: "json_Death_5",
+        layerName: "layer_Death_5",
+        pane: "pane_Death_5",
+        onEachFeature: pop_Death_5,
+        pointToLayer: function (feature, latlng) {
+          let context = {
+            feature: feature,
+            letiables: {},
+          };
+          return L.circleMarker(latlng, style_Death_5_0(feature));
+        },
+      });
+      bounds_group.addLayer(layer_Death_5);
+      map.addLayer(layer_Death_5);
+      let baseMaps = {};
+      L.control
+        .layers(
+          baseMaps,
+          {
+            '<img src="legend/Birth_4.png" /> Birth': layer_Birth_4,
+            '<img src="legend/Death_5.png" /> Death': layer_Death_5,
+            '<img src="legend/Intermediary_3.png" /> Intermediary':
+              layer_Intermediary_3,
+            '<img src="legend/Lines_advanced_2.png" /> Connecting lines':
+              layer_Lines_advanced_2,
+          },
+          { collapsed: false }
+        )
+        .addTo(map);
+      setBounds();
+      let mapDiv = document.getElementById("map");
+      let row = document.createElement("div");
+      row.className = "row";
+      row.id = "all";
+      row.style.height = "100%";
+      let col1 = document.createElement("div");
+      col1.className = "col9";
+      col1.id = "mapWindow";
+      col1.style.height = "99%";
+      col1.style.width = "80%";
+      col1.style.display = "inline-block";
+      let col2 = document.createElement("div");
+      col2.className = "col3";
+      col2.id = "menu";
+      col2.style.display = "inline-block";
+      mapDiv.parentNode.insertBefore(row, mapDiv);
+      document.getElementById("all").appendChild(col1);
+      document.getElementById("all").appendChild(col2);
+      col1.appendChild(mapDiv);
+      let Filters = { Composer: "str" };
+      function filterFunc() {
+        map.eachLayer(function (lyr) {
+          if ("options" in lyr && "dataVar" in lyr["options"]) {
             features = this[lyr["options"]["dataVar"]].features.slice(0);
-            try{
-              for (key in Filters){
-                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
-                if (Filters[key] == "str" || Filters[key] == "bool"){
+            try {
+              for (key in Filters) {
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "");
+                if (Filters[key] == "str" || Filters[key] == "bool") {
                   let selection = [];
-                  let options = document.getElementById("sel_" + keyS).options
-                  for (let i=0; i < options.length; i++) {
+                  let options = document.getElementById("sel_" + keyS).options;
+                  for (let i = 0; i < options.length; i++) {
                     if (options[i].selected) selection.push(options[i].value);
                   }
-                    try{
-                      if (key in features[0].properties){
-                        for (i = features.length - 1;
-                          i >= 0; --i){
-                          if (selection.indexOf(
-                          features[i].properties[key])<0
-                          && selection.length>0) {
-                          features.splice(i,1);
-                          }
+                  try {
+                    if (key in features[0].properties) {
+                      for (i = features.length - 1; i >= 0; --i) {
+                        if (
+                          selection.indexOf(features[i].properties[key]) < 0 &&
+                          selection.length > 0
+                        ) {
+                          features.splice(i, 1);
                         }
                       }
-                    } catch(err){
-                  }
+                    }
+                  } catch (err) {}
                 }
-                if (Filters[key] == "int"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (parseInt(features[i].properties[key])
-                          < sliderVals[0]
-                          || parseInt(features[i].properties[key])
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "real"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (features[i].properties[key]
-                          < sliderVals[0]
-                          || features[i].properties[key]
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "date"
-                  || Filters[key] == "datetime"
-                  || Filters[key] == "time"){
-                  try{
-                    if (key in features[0].properties){
-                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
-                      startdate = document.getElementById("dat_" +
-                        HTMLkey + "_date1").value.replace(" ", "T");
-                      enddate = document.getElementById("dat_" +
-                        HTMLkey + "_date2").value.replace(" ", "T");
-                      for (i = features.length - 1; i >= 0; --i){
-                        if (features[i].properties[key] < startdate
-                          || features[i].properties[key] > enddate){
-                          features.splice(i,1);
+                if (Filters[key] == "int") {
+                  sliderVals = document
+                    .getElementById("div_" + keyS)
+                    .noUiSlider.get();
+                  try {
+                    if (key in features[0].properties) {
+                      for (i = features.length - 1; i >= 0; --i) {
+                        if (
+                          parseInt(features[i].properties[key]) <
+                            sliderVals[0] ||
+                          parseInt(features[i].properties[key]) > sliderVals[1]
+                        ) {
+                          features.splice(i, 1);
                         }
                       }
                     }
-                  } catch(err){
-                  }
+                  } catch (err) {}
+                }
+                if (Filters[key] == "real") {
+                  sliderVals = document
+                    .getElementById("div_" + keyS)
+                    .noUiSlider.get();
+                  try {
+                    if (key in features[0].properties) {
+                      for (i = features.length - 1; i >= 0; --i) {
+                        if (
+                          features[i].properties[key] < sliderVals[0] ||
+                          features[i].properties[key] > sliderVals[1]
+                        ) {
+                          features.splice(i, 1);
+                        }
+                      }
+                    }
+                  } catch (err) {}
+                }
+                if (
+                  Filters[key] == "date" ||
+                  Filters[key] == "datetime" ||
+                  Filters[key] == "time"
+                ) {
+                  try {
+                    if (key in features[0].properties) {
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, "");
+                      startdate = document
+                        .getElementById("dat_" + HTMLkey + "_date1")
+                        .value.replace(" ", "T");
+                      enddate = document
+                        .getElementById("dat_" + HTMLkey + "_date2")
+                        .value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i) {
+                        if (
+                          features[i].properties[key] < startdate ||
+                          features[i].properties[key] > enddate
+                        ) {
+                          features.splice(i, 1);
+                        }
+                      }
+                    }
+                  } catch (err) {}
                 }
               }
-            } catch(err){
-            }
-          this[lyr["options"]["layerName"]].clearLayers();
-          this[lyr["options"]["layerName"]].addData(features);
+            } catch (err) {}
+            this[lyr["options"]["layerName"]].clearLayers();
+            this[lyr["options"]["layerName"]].addData(features);
           }
-          })
+        });
+      }
+      document
+        .getElementById("menu")
+        .appendChild(document.createElement("div"));
+      let div_Composer = document.createElement("div");
+      div_Composer.id = "div_Composer";
+      div_Composer.className = "filterselect";
+      document.getElementById("menu").appendChild(div_Composer);
+      sel_Composer = document.createElement("select");
+      sel_Composer.multiple = true;
+      sel_Composer.size = 10;
+      sel_Composer.id = "sel_Composer";
+      sel_Composer.onchange = function () {
+        filterFunc();
+      };
+
+      let Composer_options_str = "<option value='' unselected></option>";
+      Composer_options_str +=
+        '<option value="Bartók, Béla">Bartók, Béla</option>';
+      Composer_options_str +=
+        '<option value="Berg, Alban (Maria Johannes)">Berg, Alban</option>';
+      Composer_options_str +=
+        '<option value="Britten, (Edward) Benjamin">Britten, Benjamin</option>';
+      Composer_options_str +=
+        '<option value="Copland, Aaron">Copland, Aaron</option>';
+      Composer_options_str +=
+        '<option value="Debussy, (Achille-)Claude">Debussy, Claude</option>';
+      Composer_options_str +=
+        '<option value="Falla (y Matheu), Manuel de">Falla, Manuel de</option>';
+      Composer_options_str +=
+        '<option value="Gershwin, George">Gershwin, George</option>';
+      Composer_options_str +=
+        '<option value="Hindemith, Paul">Hindemith, Paul</option>';
+      Composer_options_str +=
+        '<option value="Honegger, Arthur">Honegger, Arthur</option>';
+      Composer_options_str +=
+        '<option value="Ives, Charles">Ives, Charles</option>';
+      Composer_options_str +=
+        '<option value="Janáček, Leoš [Leo Eugen]">Janáček, Leoš</option>';
+      Composer_options_str +=
+        '<option value="Martin, Frank">Martin, Frank</option>';
+      Composer_options_str +=
+        '<option value="Martinů, Bohuslav (Jan)">Martinů, Bohuslav </option>';
+      Composer_options_str +=
+        '<option value="Messiaen, Olivier (Eugène Prosper Charles)">Messiaen, Olivier</option>';
+      Composer_options_str +=
+        '<option value="Prokofiev, Sergey (Sergeyevich)">Prokofiev, Sergey</option>';
+      Composer_options_str +=
+        '<option value="Ravel, (Joseph) Maurice">Ravel, Maurice</option>';
+      Composer_options_str +=
+        '<option value="Schoenberg [Schönberg], Arnold (Franz Walter)">Schoenberg, Arnold</option>';
+      Composer_options_str +=
+        '<option value="Stravinsky, Igor (Fyodorovich)">Stravinsky, Igor</option>';
+      Composer_options_str +=
+        '<option value="Varèse, Edgard [Edgar] (Victor Achille Charles)">Varèse, Edgard</option>';
+      Composer_options_str +=
+        '<option value="Webern, Anton (Friedrich Wilhelm von)">Webern, Anton</option>';
+
+      sel_Composer.innerHTML = Composer_options_str;
+      div_Composer.appendChild(sel_Composer);
+
+      // let lab_Composer = document.createElement('div');
+      // lab_Composer.innerHTML = 'Composer';
+      // lab_Composer.className = 'filterlabel';
+      // div_Composer.appendChild(lab_Composer);
+
+      let reset_Composer = document.createElement("div");
+      reset_Composer.innerHTML = '<span id="reset_button">reset</span>';
+      reset_Composer.className = "filterlabel";
+      reset_Composer.onclick = function () {
+        let options = document.getElementById("sel_Composer").options;
+        for (let i = 0; i < options.length; i++) {
+          options[i].selected = false;
         }
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            let div_Composer = document.createElement('div');
-            div_Composer.id = "div_Composer";
-            div_Composer.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Composer);
-            sel_Composer = document.createElement('select');
-            sel_Composer.multiple = true;
-            sel_Composer.size = 10;
-            sel_Composer.id = "sel_Composer";
-            sel_Composer.onchange = function () { filterFunc() };
+        filterFunc();
+      };
+      div_Composer.appendChild(reset_Composer);
+    </script>
+    <script>
+      var customPopupContent =
+        '<h3>About this map</h3><p>This map displays the corpus source works by premiere location and year. Blue pins represent a single work. If the premiere venue is known, the blue pin marks the premiere venue. If the premiere venue is unknown, the blue pin is placed within the city limits. If the premiere city is unknown, the blue pin is placed within the capital city limits of the premiere country.</p><p>The default view includes all premiere locations for the corpus. Select a time range with the slider in the bottom left of the map. Click on the blue markers to view more information about the work premiere. For cities that featured a larges number of works, zoom in to view individual blue markers.</p><hr><h4>Polyrhythm Maps</h4><p>If you want to search the work premieres, see: [to be designed].</p> <p>If you want to learn more about this project, see: <a href="https://polyrhythm.humdrum.org/about/"> polyrhythm.humdrum.org/about</a>.</p><p><b>Note that there are [number] works for which the premiere year is unknown, and there are [number] works that are not featured because the premiere location is unknown.</b></p>';
+      var helloPopup = L.popup({
+        maxHeight: 300,
+        offset: [0, 200],
+        className: "custom-popup",
+      }).setContent(customPopupContent);
 
-            let Composer_options_str = "<option value='' unselected></option>";
-            Composer_options_str  += '<option value="Bartók, Béla">Bartók, Béla</option>';
-            Composer_options_str  += '<option value="Berg, Alban (Maria Johannes)">Berg, Alban</option>';
-            Composer_options_str  += '<option value="Britten, (Edward) Benjamin">Britten, Benjamin</option>';
-            Composer_options_str  += '<option value="Copland, Aaron">Copland, Aaron</option>';
-            Composer_options_str  += '<option value="Debussy, (Achille-)Claude">Debussy, Claude</option>';
-            Composer_options_str  += '<option value="Falla (y Matheu), Manuel de">Falla, Manuel de</option>';
-            Composer_options_str  += '<option value="Gershwin, George">Gershwin, George</option>';
-            Composer_options_str  += '<option value="Hindemith, Paul">Hindemith, Paul</option>';
-            Composer_options_str  += '<option value="Honegger, Arthur">Honegger, Arthur</option>';
-            Composer_options_str  += '<option value="Ives, Charles">Ives, Charles</option>';
-            Composer_options_str  += '<option value="Janáček, Leoš [Leo Eugen]">Janáček, Leoš</option>';
-            Composer_options_str  += '<option value="Martin, Frank">Martin, Frank</option>';
-            Composer_options_str  += '<option value="Martinů, Bohuslav (Jan)">Martinů, Bohuslav </option>';
-            Composer_options_str  += '<option value="Messiaen, Olivier (Eugène Prosper Charles)">Messiaen, Olivier</option>';
-            Composer_options_str  += '<option value="Prokofiev, Sergey (Sergeyevich)">Prokofiev, Sergey</option>';
-            Composer_options_str  += '<option value="Ravel, (Joseph) Maurice">Ravel, Maurice</option>';
-            Composer_options_str  += '<option value="Schoenberg [Schönberg], Arnold (Franz Walter)">Schoenberg, Arnold</option>';
-            Composer_options_str  += '<option value="Stravinsky, Igor (Fyodorovich)">Stravinsky, Igor</option>';
-            Composer_options_str  += '<option value="Varèse, Edgard [Edgar] (Victor Achille Charles)">Varèse, Edgard</option>';
-            Composer_options_str  += '<option value="Webern, Anton (Friedrich Wilhelm von)">Webern, Anton</option>';
-
-            sel_Composer.innerHTML = Composer_options_str;
-            div_Composer.appendChild(sel_Composer);
-
-            // let lab_Composer = document.createElement('div');
-            // lab_Composer.innerHTML = 'Composer';
-            // lab_Composer.className = 'filterlabel';
-            // div_Composer.appendChild(lab_Composer);
-
-            let reset_Composer = document.createElement('div');
-            reset_Composer.innerHTML = '<span id="reset_button">reset</span>';
-            reset_Composer.className = 'filterlabel';
-            reset_Composer.onclick = function() {
-                let options = document.getElementById("sel_Composer").options;
-                for (let i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_Composer.appendChild(reset_Composer);
-        </script>
-    </body>
+      L.easyButton(
+        '<img src="./information.ico" style="padding-top:6px;">',
+        function (btn, map) {
+          helloPopup.setLatLng(map.getCenter()).openOn(map);
+        }
+      ).addTo(map);
+    </script>
+  </body>
 </html>
