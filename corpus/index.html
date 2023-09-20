@@ -24,6 +24,13 @@
     />
     <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
 
+    <!-- Add Leaflet EasyButton sources -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
     <!-- basemap libraries -->
 
     <script
@@ -33,6 +40,30 @@
 
     <!-- geoJSON data -->
     <script src="corpus.js" charset="utf-8"></script>
+
+    <!-- custom popup styling for info box -->
+    <style>
+      .custom-popup .leaflet-popup-content-wrapper {
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+        border-radius: 6px !important;
+        color: #222;
+        font-size: 14px;
+        border-radius: 0px;
+      }
+      .custom-popup .leaflet-popup-content-wrapper a {
+        color: rgba(255, 255, 255, 0.1);
+      }
+
+      .custom-popup .leaflet-popup-tip {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+      .custom-popup .leaflet-popup-content-wrapper a {
+        color: rgb(0, 145, 255);
+      }
+    </style>
   </head>
 
   <body>
@@ -45,10 +76,10 @@
 
       //New tile layer
       L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
         {
           attribution:
-          'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012',
+            "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012",
           subdomains: "abcd",
           minZoom: 0,
           maxZoom: 20,
@@ -60,31 +91,54 @@
       //L.geoJSON(corpusdata).addTo(map);
 
       var markers = L.markerClusterGroup();
-   
 
-      L.geoJSON(corpusdata,{
-        onEachFeature: function(feature,layer){
-          var popupContent="<b>Composer: </b>"+feature.properties.composer_s_name+
-          "<br><b>Work: </b>"+feature.properties.work_title+
-          "<br><b>Genre: </b>"+feature.properties.genre+
-          "<br><b>Sub-Genre: </b>"+feature.properties.sub_genre+
-          "<br><b>Composition Year: </b>"+feature.properties.composition_year+
-          "<br><b>Publication Year: </b>"+feature.properties.first_publication_year+
-          "<br><b>Premiere Date: </b>"+feature.properties.premiere_date+
-          "<br><b>Premiere Location: </b>"+feature.properties.venue_or_city+
-          "<br><b>Ensemble: </b>"+feature.properties.ensemble+
-          "<br><b>Conductor: </b>"+feature.properties.conductor+
-          "<br><b>Soloist(s): </b>"+feature.properties.soloists+
-          "<br><b>Corpus Example(s): </b>"+feature.properties.example_no_2;
-
+      L.geoJSON(corpusdata, {
+        onEachFeature: function (feature, layer) {
+          var popupContent =
+            "<b>Composer: </b>" +
+            feature.properties.composer_s_name +
+            "<br><b>Work: </b>" +
+            feature.properties.work_title +
+            "<br><b>Genre: </b>" +
+            feature.properties.genre +
+            "<br><b>Sub-Genre: </b>" +
+            feature.properties.sub_genre +
+            "<br><b>Composition Year: </b>" +
+            feature.properties.composition_year +
+            "<br><b>Publication Year: </b>" +
+            feature.properties.first_publication_year +
+            "<br><b>Premiere Date: </b>" +
+            feature.properties.premiere_date +
+            "<br><b>Premiere Location: </b>" +
+            feature.properties.venue_or_city +
+            "<br><b>Ensemble: </b>" +
+            feature.properties.ensemble +
+            "<br><b>Conductor: </b>" +
+            feature.properties.conductor +
+            "<br><b>Soloist(s): </b>" +
+            feature.properties.soloists +
+            "<br><b>Corpus Example(s): </b>" +
+            feature.properties.example_no_2;
 
           layer.bindPopup(popupContent);
-
-        }
+        },
       }).addTo(markers);
       markers.addTo(map);
+    </script>
+    <script>
+      var customPopupContent =
+        '<h3>About this map</h3><p>This map displays the corpus source works by premiere location. Blue pins represent a single work and coloured shapes represent clusters of works. If the premiere venue is known, the blue pin marks the premiere venue. If the premiere venue is unknown, the blue pin is placed within the city limits. If the premiere city is unknown, the blue pin is placed within the capital city limits of the premiere country.</p><p>The default view includes all premiere locations for the corpus. Click on clusters to zoom in to the works in that area, and click on the blue markers to view more information about the work.</p><hr><h4>More information</h4><p>If you want to search the corpus and the analysis tools, see:<a href="https://polyrhythm.humdrum.org/"> polyrhythm.humdrum.org</a>.</p> <p>If you want to learn more about this project, see: <a href="https://polyrhythm.humdrum.org/about/"> polyrhythm.humdrum.org/about</a>.</p><p><b>Note that there are 14 works that are not featured because the premiere location is unknown.</b></p>';
+      var helloPopup = L.popup({
+        maxHeight: 300,
+        className: "custom-popup",
+      }).setContent(customPopupContent);
 
-      
+      L.easyButton(
+        '<img src="./information.ico" style="padding-top:6px;">',
+        function (btn, map) {
+          helloPopup.setLatLng(map.getCenter()).openOn(map);
+        }
+      ).addTo(map);
     </script>
   </body>
 </html>

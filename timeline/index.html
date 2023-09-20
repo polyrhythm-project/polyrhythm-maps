@@ -46,7 +46,7 @@
     <!-- Slider and Static Graph Container -->
     <style>
       #map .slider {
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.6);
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
         border-radius: 6px;
         text-align: center;
@@ -55,7 +55,7 @@
       }
 
       .custom-popup .leaflet-popup-content-wrapper {
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.6);
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
         border-radius: 6px !important;
         color: #222;
@@ -82,138 +82,136 @@
     <div id="map" style="height: 100%"></div>
 
     <script>
+      // Initializes map; sets the initial view location and zoom level
+      var map = L.map("map").setView([34, -35], 2.5);
 
+      L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+        {
+          attribution:
+            "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012",
+          subdomains: "abcd",
+          minZoom: 0,
+          maxZoom: 20,
+          ext: "png",
+        }
+      ).addTo(map);
 
-// Initializes map; sets the initial view location and zoom level
-var map = L.map("map").setView([34, -35], 2.5);
+      var testlayer = L.geoJSON(corpusdata, {
+        onEachFeature: function (feature, layer) {
+          if (
+            feature.properties &&
+            feature.properties.work_title &&
+            feature.properties.genre &&
+            feature.properties.sub_genre &&
+            feature.properties.composer_s_name &&
+            feature.properties.composition_year &&
+            feature.properties.premiere_date &&
+            feature.properties.premiere_venue &&
+            feature.properties.premiere_city &&
+            feature.properties.premiere_country &&
+            feature.properties.ensemble &&
+            feature.properties.conductor &&
+            feature.properties.soloists &&
+            feature.properties.example_no_2
+          ) {
+            layer.bindPopup(
+              "<p><b>Premiere Date: </b>" +
+                feature.properties.premiere_date +
+                "<br><b>Work: </b>" +
+                feature.properties.work_title +
+                "<br><b>Genre: </b>" +
+                feature.properties.genre +
+                "<br><b>Sub-genre: </b>" +
+                feature.properties.sub_genre +
+                "<br><b>Composer: </b>" +
+                feature.properties.composer_s_name +
+                "<br><b>Composition Year: </b>" +
+                feature.properties.composition_year +
+                "<br><b>Premiere Venue: </b>" +
+                feature.properties.premiere_venue +
+                "<br><b>Premiere City: </b>" +
+                feature.properties.premiere_city +
+                "<br><b>Premiere Country: </b>" +
+                feature.properties.premiere_country +
+                "<br><b>Ensemble: </b>" +
+                feature.properties.ensemble +
+                "<br><b>Conductor: </b>" +
+                feature.properties.conductor +
+                "<br><b>Soloists: </b>" +
+                feature.properties.soloists +
+                "<br><b>Corpus Example: </b>" +
+                feature.properties.example_no_2 +
+                "</p>"
+            );
+          }
+        },
+      }).addTo(map);
 
-L.tileLayer(
-  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
-  {
-    attribution:
-      "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012",
-    subdomains: "abcd",
-    minZoom: 0,
-    maxZoom: 20,
-    ext: "png",
-  }
-).addTo(map);
+      // Create SliderControl with setup options.
+      // "timeAttribute" sets the timeline for the slider.
+      // "range" sets a starting and ending point on the slider.
+      var sliderControl = L.control
+        .sliderControl({
+          layer: testlayer,
+          timeAttribute: "premiere_year",
+          range: true,
+          position: "bottomright",
+        })
+        .addTo(map);
 
-var testlayer = L.geoJSON(corpusdata, {
-  onEachFeature: function (feature, layer) {
-    if (
-      feature.properties &&
-      feature.properties.work_title &&
-      feature.properties.genre &&
-      feature.properties.sub_genre &&
-      feature.properties.composer_s_name &&
-      feature.properties.composition_year &&
-      feature.properties.premiere_date &&
-      feature.properties.premiere_venue &&
-      feature.properties.premiere_city &&
-      feature.properties.premiere_country &&
-      feature.properties.ensemble &&
-      feature.properties.conductor &&
-      feature.properties.soloists &&
-      feature.properties.example_no_2
-    ) {
-      layer.bindPopup(
-        "<p><b>Premiere Date: </b>" +
-          feature.properties.premiere_date +
-          "<br><b>Work: </b>" +
-          feature.properties.work_title +
-          "<br><b>Genre: </b>" +
-          feature.properties.genre +
-          "<br><b>Sub-genre: </b>" +
-          feature.properties.sub_genre +
-          "<br><b>Composer: </b>" +
-          feature.properties.composer_s_name +
-          "<br><b>Composition Year: </b>" +
-          feature.properties.composition_year +
-          "<br><b>Premiere Venue: </b>" +
-          feature.properties.premiere_venue +
-          "<br><b>Premiere City: </b>" +
-          feature.properties.premiere_city +
-          "<br><b>Premiere Country: </b>" +
-          feature.properties.premiere_country +
-          "<br><b>Ensemble: </b>" +
-          feature.properties.ensemble +
-          "<br><b>Conductor: </b>" +
-          feature.properties.conductor +
-          "<br><b>Soloists: </b>" +
-          feature.properties.soloists +
-          "<br><b>Corpus Example: </b>" +
-          feature.properties.example_no_2 +
-          "</p>"
-      );
-    }
-  },
-}).addTo(map);
+      // Create premiere_year properties for markers by extracting
+      // the year only from premiere_date property.
+      let m = sliderControl.options.markers;
+      for (let i = 0; i < m.length; i++) {
+        let value = m[i].feature.properties.premiere_date;
+        let matches = value.match(/(\d{4})/);
+        if (matches) {
+          m[i].feature.properties.premiere_year = matches[1];
+        } else {
+          m[i].feature.properties.premiere_year = "3000";
+        }
+      }
 
-// Create SliderControl with setup options.
-// "timeAttribute" sets the timeline for the slider.
-// "range" sets a starting and ending point on the slider.
-var sliderControl = L.control
-  .sliderControl({
-    layer: testlayer,
-    timeAttribute: "premiere_year",
-    range: true,
-    position: "bottomright",
-  })
-  .addTo(map);
+      // Sort sliderControl markers by premiere_year
+      sliderControl.options.markers.sort(function (a, b) {
+        let A = a.feature.properties.premiere_year;
+        let B = b.feature.properties.premiere_year;
+        A = parseInt(A);
+        B = parseInt(B);
+        if (A < B) {
+          return -1;
+        } else if (A > B) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
 
-// Create premiere_year properties for markers by extracting
-// the year only from premiere_date property.
-let m = sliderControl.options.markers;
-for (let i = 0; i < m.length; i++) {
-  let value = m[i].feature.properties.premiere_date;
-  let matches = value.match(/(\d{4})/);
-  if (matches) {
-    m[i].feature.properties.premiere_year = matches[1];
-  } else {
-    m[i].feature.properties.premiere_year = "3000";
-  }
-}
+      // Initialize the slider
+      sliderControl.startSlider();
 
-// Sort sliderControl markers by premiere_year
-sliderControl.options.markers.sort(function (a, b) {
-  let A = a.feature.properties.premiere_year;
-  let B = b.feature.properties.premiere_year;
-  A = parseInt(A);
-  B = parseInt(B);
-  if (A < B) {
-    return -1;
-  } else if (A > B) {
-    return 1;
-  } else {
-    return 0;
-  }
-});
+      let minYear = 1877;
+      let maxYear = 1973;
+      var sliderElement = document.querySelector("#leaflet-slider");
+      sliderElement.value = minYear + "," + maxYear;
 
-// Initialize the slider
-sliderControl.startSlider();
+      var element1 = sliderElement.querySelector("div.ui-slider-range");
+      var element2 = sliderElement.querySelector("a.ui-corner-all");
 
-let minYear = 1877;
-let maxYear = 1973;
-var sliderElement = document.querySelector('#leaflet-slider');
-sliderElement.value = minYear + ',' + maxYear;
+      element1.style.left = "100%";
+      element2.style.left = "100%";
 
-var element1 = sliderElement.querySelector("div.ui-slider-range");
-var element2 = sliderElement.querySelector("a.ui-corner-all");
-
-element1.style.left = "100%";
-element2.style.left = "100%";
-
-sliderElement.dispatchEvent(new Event('change'));
-
+      sliderElement.dispatchEvent(new Event("change"));
     </script>
 
     <script>
       var customPopupContent =
-        '<h3>About this map</h3><p>This is a timeline map showing the location of where works first premiered. Use the timeline slider in the bottom right corner to select works during that premiered during a specific time range.</p><hr><h4>Polyrhythm Maps</h4><p>Information about the project can be found here <a href="https://maps.polyrhythm.humdrum.org/">maps.polyrhythm.humdrum.org</a>.</p>';
-      var helloPopup = L.popup({ className: "custom-popup" }).setContent(
-        customPopupContent
-      );
+        '<h3>About this map</h3><p>This map displays the corpus source works by premiere location and year. Blue pins represent a single work. If the premiere venue is known, the blue pin marks the premiere venue. If the premiere venue is unknown, the blue pin is placed within the city limits. If the premiere city is unknown, the blue pin is placed within the capital city limits of the premiere country.</p><p>The default view includes all premiere locations for the corpus. Select a time range with the slider in the bottom left of the map. Click on the blue markers to view more information about the work premiere. For cities that featured a larges number of works, zoom in to view individual blue markers.</p><hr><h4>Polyrhythm Maps</h4><p>If you want to search the work premieres, see: [to be designed].</p> <p>If you want to learn more about this project, see: <a href="https://polyrhythm.humdrum.org/about/"> polyrhythm.humdrum.org/about</a>.</p><p><b>Note that there are 14 works that are not featured because the premiere location is unknown.</b></p>';
+      var helloPopup = L.popup({
+        maxHeight: 300,
+        className: "custom-popup",
+      }).setContent(customPopupContent);
 
       L.easyButton(
         '<img src="./information.ico" style="padding-top:6px;">',

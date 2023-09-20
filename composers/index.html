@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -66,60 +66,127 @@
         function pop_Lines_advanced_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Places'] !== null ? autolinker.link(feature.properties['Places'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Places"] !== null
+            ? autolinker.link(feature.properties["Places"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Order'] !== null ? autolinker.link(feature.properties['Order'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Order"] !== null
+            ? autolinker.link(feature.properties["Order"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Map option'] !== null ? autolinker.link(feature.properties['Map option'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Map option"] !== null
+            ? autolinker.link(feature.properties["Map option"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Composer'] !== null ? autolinker.link(feature.properties['Composer'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Composer"] !== null
+            ? autolinker.link(feature.properties["Composer"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Nationalit'] !== null ? autolinker.link(feature.properties['Nationalit'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Nationalit"] !== null
+            ? autolinker.link(feature.properties["Nationalit"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Date'] !== null ? autolinker.link(feature.properties['Date'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Date"] !== null
+            ? autolinker.link(feature.properties["Date"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Country'] !== null ? autolinker.link(feature.properties['Country'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Country"] !== null
+            ? autolinker.link(feature.properties["Country"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['City'] !== null ? autolinker.link(feature.properties['City'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["City"] !== null
+            ? autolinker.link(feature.properties["City"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Latitude"] !== null
+            ? autolinker.link(feature.properties["Latitude"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Longitude"] !== null
+            ? autolinker.link(feature.properties["Longitude"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Comment'] !== null ? autolinker.link(feature.properties['Comment'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Comment"] !== null
+            ? autolinker.link(feature.properties["Comment"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Coordinate'] !== null ? autolinker.link(feature.properties['Coordinate'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Coordinate"] !== null
+            ? autolinker.link(feature.properties["Coordinate"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Corpus Wor'] !== null ? autolinker.link(feature.properties['Corpus Wor'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Corpus Wor"] !== null
+            ? autolinker.link(feature.properties["Corpus Wor"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Corpus Exa'] !== null ? autolinker.link(feature.properties['Corpus Exa'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Corpus Exa"] !== null
+            ? autolinker.link(feature.properties["Corpus Exa"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Additional'] !== null ? autolinker.link(feature.properties['Additional'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Additional"] !== null
+            ? autolinker.link(feature.properties["Additional"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Wikipedia'] !== null ? autolinker.link(feature.properties['Wikipedia'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Wikipedia"] !== null
+            ? autolinker.link(feature.properties["Wikipedia"].toLocaleString())
+            : "") +
+          '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Grove'] !== null ? autolinker.link(feature.properties['Grove'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' +
+          (feature.properties["Grove"] !== null
+            ? autolinker.link(feature.properties["Grove"].toLocaleString())
+            : "") +
+          "</td>\
                     </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
+                </table>";
+        layer.bindPopup(popupContent, { maxHeight: 400 });
+      }
         function style_Lines_advanced_2_0() {
             return {
                 pane: 'pane_Lines_advanced_2',
@@ -375,79 +442,83 @@
                   for (var i=0; i < options.length; i++) {
                     if (options[i].selected) selection.push(options[i].value);
                   }
-                    try{
-                      if (key in features[0].properties){
-                        for (i = features.length - 1;
-                          i >= 0; --i){
-                          if (selection.indexOf(
-                          features[i].properties[key])<0
-                          && selection.length>0) {
-                          features.splice(i,1);
-                          }
+                  try {
+                    if (key in features[0].properties) {
+                      for (i = features.length - 1; i >= 0; --i) {
+                        if (
+                          selection.indexOf(features[i].properties[key]) < 0 &&
+                          selection.length > 0
+                        ) {
+                          features.splice(i, 1);
                         }
                       }
-                    } catch(err){
-                  }
+                    }
+                  } catch (err) {}
                 }
-                if (Filters[key] == "int"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (parseInt(features[i].properties[key])
-                          < sliderVals[0]
-                          || parseInt(features[i].properties[key])
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "real"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (features[i].properties[key]
-                          < sliderVals[0]
-                          || features[i].properties[key]
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "date"
-                  || Filters[key] == "datetime"
-                  || Filters[key] == "time"){
-                  try{
-                    if (key in features[0].properties){
-                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
-                      startdate = document.getElementById("dat_" +
-                        HTMLkey + "_date1").value.replace(" ", "T");
-                      enddate = document.getElementById("dat_" +
-                        HTMLkey + "_date2").value.replace(" ", "T");
-                      for (i = features.length - 1; i >= 0; --i){
-                        if (features[i].properties[key] < startdate
-                          || features[i].properties[key] > enddate){
-                          features.splice(i,1);
+                if (Filters[key] == "int") {
+                  sliderVals = document
+                    .getElementById("div_" + keyS)
+                    .noUiSlider.get();
+                  try {
+                    if (key in features[0].properties) {
+                      for (i = features.length - 1; i >= 0; --i) {
+                        if (
+                          parseInt(features[i].properties[key]) <
+                            sliderVals[0] ||
+                          parseInt(features[i].properties[key]) > sliderVals[1]
+                        ) {
+                          features.splice(i, 1);
                         }
                       }
                     }
-                  } catch(err){
-                  }
+                  } catch (err) {}
+                }
+                if (Filters[key] == "real") {
+                  sliderVals = document
+                    .getElementById("div_" + keyS)
+                    .noUiSlider.get();
+                  try {
+                    if (key in features[0].properties) {
+                      for (i = features.length - 1; i >= 0; --i) {
+                        if (
+                          features[i].properties[key] < sliderVals[0] ||
+                          features[i].properties[key] > sliderVals[1]
+                        ) {
+                          features.splice(i, 1);
+                        }
+                      }
+                    }
+                  } catch (err) {}
+                }
+                if (
+                  Filters[key] == "date" ||
+                  Filters[key] == "datetime" ||
+                  Filters[key] == "time"
+                ) {
+                  try {
+                    if (key in features[0].properties) {
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, "");
+                      startdate = document
+                        .getElementById("dat_" + HTMLkey + "_date1")
+                        .value.replace(" ", "T");
+                      enddate = document
+                        .getElementById("dat_" + HTMLkey + "_date2")
+                        .value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i) {
+                        if (
+                          features[i].properties[key] < startdate ||
+                          features[i].properties[key] > enddate
+                        ) {
+                          features.splice(i, 1);
+                        }
+                      }
+                    }
+                  } catch (err) {}
                 }
               }
-            } catch(err){
-            }
-          this[lyr["options"]["layerName"]].clearLayers();
-          this[lyr["options"]["layerName"]].addData(features);
+            } catch (err) {}
+            this[lyr["options"]["layerName"]].clearLayers();
+            this[lyr["options"]["layerName"]].addData(features);
           }
           })
         }
@@ -485,8 +556,8 @@
             Composer_options_str  += '<option value="Varèse, Edgard [Edgar] (Victor Achille Charles)">Varèse, Edgard</option>';
             Composer_options_str  += '<option value="Webern, Anton (Friedrich Wilhelm von)">Webern, Anton</option>';
 
-            sel_Composer.innerHTML = Composer_options_str;
-            div_Composer.appendChild(sel_Composer);
+      sel_Composer.innerHTML = Composer_options_str;
+      div_Composer.appendChild(sel_Composer);
 
             // var lab_Composer = document.createElement('div');
             // lab_Composer.innerHTML = 'Composer';
@@ -505,5 +576,21 @@
             };
             div_Composer.appendChild(reset_Composer);
         </script>
+   <script>
+      var customPopupContent =
+        '<h3>About this map</h3><p>This map displays the corpus source works by premiere location and year. Blue pins represent a single work. If the premiere venue is known, the blue pin marks the premiere venue. If the premiere venue is unknown, the blue pin is placed within the city limits. If the premiere city is unknown, the blue pin is placed within the capital city limits of the premiere country.</p><p>The default view includes all premiere locations for the corpus. Select a time range with the slider in the bottom left of the map. Click on the blue markers to view more information about the work premiere. For cities that featured a larges number of works, zoom in to view individual blue markers.</p><hr><h4>More information</h4><p>If you want to search the work premieres, see: [to be designed].</p> <p>If you want to learn more about this project, see: <a href="https://polyrhythm.humdrum.org/about/"> polyrhythm.humdrum.org/about</a>.</p><p><b>Note that there are [number] works for which the premiere year is unknown, and there are [number] works that are not featured because the premiere location is unknown.</b></p>';
+      var helloPopup = L.popup({
+        maxHeight: 300,
+        className: "custom-popup",
+      }).setContent(customPopupContent);
+
+      L.easyButton(
+        '<img src="./information.ico" style="padding-top:6px;">',
+        function (btn, map) {
+          helloPopup.setLatLng(map.getCenter()).openOn(map);
+        }
+      ).addTo(map);
+    </script>
     </body>
+
 </html>
