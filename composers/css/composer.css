@@ -40,3 +40,8 @@ select:focus {
 }
 
 
+select option {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 15px;
+}
+
